@@ -1,6 +1,6 @@
 {
-  "name": "Xavier的博客与文档站",
-  "short_name": "Xavier的博客与文档站",
+  "name": "Xavier的文档站",
+  "short_name": "Xavier的文档站",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Xavier的博客与文档站</title>
+    <title>Xavier的文档站</title>
     <link>http://Xavier-Zev.github.io/docs/example/collapsed/</link>
-    <description>Recent content on Xavier的博客与文档站</description>
+    <description>Recent content on Xavier的文档站</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>© 2026 Xavier 版权所有</copyright>
