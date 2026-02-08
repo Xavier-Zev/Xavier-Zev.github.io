@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xavier的文档站</title>
-    <link>http://Xavier-Zev.github.io/docs/example/collapsed/</link>
+    <link>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/</link>
     <description>Recent content on Xavier的文档站</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>© 2026 Xavier 版权所有</copyright>
-    <atom:link href="http://Xavier-Zev.github.io/docs/example/collapsed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
