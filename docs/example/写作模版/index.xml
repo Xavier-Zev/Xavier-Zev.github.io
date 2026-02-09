@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>这是一个模版 on Xavier的文档站</title>
+    <link>http://Xavier-Zev.github.io/docs/example/%E5%86%99%E4%BD%9C%E6%A8%A1%E7%89%88/</link>
+    <description>Recent content in 这是一个模版 on Xavier的文档站</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <copyright>© 2026 Xavier 版权所有</copyright>
+    <atom:link href="http://Xavier-Zev.github.io/docs/example/%E5%86%99%E4%BD%9C%E6%A8%A1%E7%89%88/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
