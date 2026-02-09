@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="认识GitHub# 此部分内容转载至Wiki维基百科，自由的百科全书
+概述# GitHub是一个在线软件源代码托管服务平台，用于公开程序或软件的代码。使用Git作为版本控制软件，由开发者克里斯·汪斯崔斯、P·J·海特和汤姆·普雷斯顿·沃纳使用Ruby on Rails编写而成。在2018年，GitHub被微软公司收购。
+GitHub同时提供付费账户和免费账户。这两种账户都可以建立公开或私有的代码仓库，但付费用户拥有更多功能。根据在2009年的Git用户调查，GitHub是最流行的Git托管站点。除了允许个人和组织建立和访问保管中的代码以外，它也提供了一些方便社会化共同软件开发的功能，即一般人口中的社群功能，包括允许用户追踪其他用户、组织、软件库的动态，对软件代码的改动和bug提出评论等。GitHub也提供了分析功能，用于概观显示开发者们怎样在代码库上工作以及软件的开发活跃程度。
+服务# GitHub平台于2007年10月1日开始开发。网站于2008年2月以beta版本开始上线，4月份正式上线。 GitHub里面的项目可以通过标准的Git命令进行访问和操作。同时，所有的Git命令都可以用到GitHub项目上面。GitHub开发了针对Microsoft Windows和macOS操作系统的桌面客户端。此外，也可以使用第三方插件来实现Git功能。网站提供了一系列社交网络具有的功能，例如标星／赞（star）、关注（follow）、评论。用户可以通过复刻（fork）他人项目的形式参与开发，并可通过协作示意图来查看有多少开发者参与了开发并追踪最新的复刻版本。此外网站还有Wiki（通过一个名为 gollum 的软件实现）等功能。
+GitHub同时允许注册用户和非注册用户在网页中浏览项目，也可以以ZIP格式打包下载。但是用户必须注册登录一个账号才能讨论、创建并编辑项目、参与他人的项目和代码审查。GitHub支持建立不限数量的公开仓库，已付费用户可以建立私有仓库。2019年1月7日，GitHub宣布免费用户也可以建立私有仓库，私有仓库数量不限但每个仓库最多指定三个合作者。2020年4月14日，GitHub宣布进一步开放核心功能，取消私有仓库合作者数量限制，并降低了收费账号费。
+主要功能# GitHub通常用于软件开发。GitHub还支持以下格式和功能：
+文档：包括自动生成的、采用类Markdown语言的Readme文件（称作GitHub Flavored Markdown, GFM） 问题追踪系统（同时可用于功能需求） Wiki GitHub Pages支持用户通过软件仓库建立静态网站或静态博客（通过Jekyll的软件实现，但是也支持采用诸如 Hexo 等其他博客引擎搭建） 任务列表 甘特图 可视化的地理位置分析 预览3D渲染文件[16]。预览功能通过WebGL和Three.js实现 预览Adobe Photoshop的PSD文件，甚至可以比较同一文件的不同版本 开发语言# GitHub系统由GitHub公司的开发者Chris Wanstrath开发。系统采用了Ruby on Rails和Erlang作为后端。
+仓库许可证# GitHub的许可条款并不要求公有仓库满足自由软件标准。在建立软件仓库时，GitHub会询问用户准备采取的软件许可证，此外用户也可以使用自己的许可证。
+其他功能# GitHub企业版 GitHub Enterprise# GitHub Enterprise和GitHub的服务类似，不过它为大型企业的开发团队量身定制，并可提供自托管版本服务器软件。
+GitHub页面 GitHub Pages# GitHub Pages是GitHub提供的一个网页托管服务，可以用于存放静态网页，包括博客、项目文档甚至整本书。GitHub Pages的网站使用github.io的子域名，但是用户也可以使用第三方域名。Github Pages可以将仓库目录或 GitHub Actions 中传入的文件发布为静态网页源代码，一般可在仓库-&gt;设置-&gt;Pages里设置。
+摘要功能 Gist# GitHub提供一个粘贴箱风格的站点GitHub Gist。
+Tom Preston-Werner于2008年开发了Gist功能。Gist继承了粘贴箱的观念，此外还添加了版本控制、复刻、SSL加密等功能。因为代码片段也是Git仓库，所以单个代码片段可以容纳多个文件，并且可以通过Git进行操作。因此Gist更像一个小型项目。
+学生开发工具 Student Developer Pack# GitHub与Algolia、Microsoft Azure、Bitnami、Crowdflower、DigitalOcean、DNSimple、GitKraken、Heroku、HackHands、JetBrains、Namecheap、Name.com、Orchestrate、Screenhero、SendGrid、Stripe、Travis CI和虚幻引擎等共同合作，于2014年10月7日发起了一个名为GitHub学生开发者套装的项目。该项目为学生提供了一些免费的开发工具和服务
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEGitHub/">
+  <meta property="og:site_name" content="Xavier的文档站">
+  <meta property="og:title" content="「认识科普」GitHub">
+  <meta property="og:description" content="认识GitHub# 此部分内容转载至Wiki维基百科，自由的百科全书
+概述# GitHub是一个在线软件源代码托管服务平台，用于公开程序或软件的代码。使用Git作为版本控制软件，由开发者克里斯·汪斯崔斯、P·J·海特和汤姆·普雷斯顿·沃纳使用Ruby on Rails编写而成。在2018年，GitHub被微软公司收购。
+GitHub同时提供付费账户和免费账户。这两种账户都可以建立公开或私有的代码仓库，但付费用户拥有更多功能。根据在2009年的Git用户调查，GitHub是最流行的Git托管站点。除了允许个人和组织建立和访问保管中的代码以外，它也提供了一些方便社会化共同软件开发的功能，即一般人口中的社群功能，包括允许用户追踪其他用户、组织、软件库的动态，对软件代码的改动和bug提出评论等。GitHub也提供了分析功能，用于概观显示开发者们怎样在代码库上工作以及软件的开发活跃程度。
+服务# GitHub平台于2007年10月1日开始开发。网站于2008年2月以beta版本开始上线，4月份正式上线。 GitHub里面的项目可以通过标准的Git命令进行访问和操作。同时，所有的Git命令都可以用到GitHub项目上面。GitHub开发了针对Microsoft Windows和macOS操作系统的桌面客户端。此外，也可以使用第三方插件来实现Git功能。网站提供了一系列社交网络具有的功能，例如标星／赞（star）、关注（follow）、评论。用户可以通过复刻（fork）他人项目的形式参与开发，并可通过协作示意图来查看有多少开发者参与了开发并追踪最新的复刻版本。此外网站还有Wiki（通过一个名为 gollum 的软件实现）等功能。
+GitHub同时允许注册用户和非注册用户在网页中浏览项目，也可以以ZIP格式打包下载。但是用户必须注册登录一个账号才能讨论、创建并编辑项目、参与他人的项目和代码审查。GitHub支持建立不限数量的公开仓库，已付费用户可以建立私有仓库。2019年1月7日，GitHub宣布免费用户也可以建立私有仓库，私有仓库数量不限但每个仓库最多指定三个合作者。2020年4月14日，GitHub宣布进一步开放核心功能，取消私有仓库合作者数量限制，并降低了收费账号费。
+主要功能# GitHub通常用于软件开发。GitHub还支持以下格式和功能：
+文档：包括自动生成的、采用类Markdown语言的Readme文件（称作GitHub Flavored Markdown, GFM） 问题追踪系统（同时可用于功能需求） Wiki GitHub Pages支持用户通过软件仓库建立静态网站或静态博客（通过Jekyll的软件实现，但是也支持采用诸如 Hexo 等其他博客引擎搭建） 任务列表 甘特图 可视化的地理位置分析 预览3D渲染文件[16]。预览功能通过WebGL和Three.js实现 预览Adobe Photoshop的PSD文件，甚至可以比较同一文件的不同版本 开发语言# GitHub系统由GitHub公司的开发者Chris Wanstrath开发。系统采用了Ruby on Rails和Erlang作为后端。
+仓库许可证# GitHub的许可条款并不要求公有仓库满足自由软件标准。在建立软件仓库时，GitHub会询问用户准备采取的软件许可证，此外用户也可以使用自己的许可证。
+其他功能# GitHub企业版 GitHub Enterprise# GitHub Enterprise和GitHub的服务类似，不过它为大型企业的开发团队量身定制，并可提供自托管版本服务器软件。
+GitHub页面 GitHub Pages# GitHub Pages是GitHub提供的一个网页托管服务，可以用于存放静态网页，包括博客、项目文档甚至整本书。GitHub Pages的网站使用github.io的子域名，但是用户也可以使用第三方域名。Github Pages可以将仓库目录或 GitHub Actions 中传入的文件发布为静态网页源代码，一般可在仓库-&gt;设置-&gt;Pages里设置。
+摘要功能 Gist# GitHub提供一个粘贴箱风格的站点GitHub Gist。
+Tom Preston-Werner于2008年开发了Gist功能。Gist继承了粘贴箱的观念，此外还添加了版本控制、复刻、SSL加密等功能。因为代码片段也是Git仓库，所以单个代码片段可以容纳多个文件，并且可以通过Git进行操作。因此Gist更像一个小型项目。
+学生开发工具 Student Developer Pack# GitHub与Algolia、Microsoft Azure、Bitnami、Crowdflower、DigitalOcean、DNSimple、GitKraken、Heroku、HackHands、JetBrains、Namecheap、Name.com、Orchestrate、Screenhero、SendGrid、Stripe、Travis CI和虚幻引擎等共同合作，于2014年10月7日发起了一个名为GitHub学生开发者套装的项目。该项目为学生提供了一些免费的开发工具和服务">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="「认识科普」GitHub">
+  <meta itemprop="description" content="认识GitHub# 此部分内容转载至Wiki维基百科，自由的百科全书
+概述# GitHub是一个在线软件源代码托管服务平台，用于公开程序或软件的代码。使用Git作为版本控制软件，由开发者克里斯·汪斯崔斯、P·J·海特和汤姆·普雷斯顿·沃纳使用Ruby on Rails编写而成。在2018年，GitHub被微软公司收购。
+GitHub同时提供付费账户和免费账户。这两种账户都可以建立公开或私有的代码仓库，但付费用户拥有更多功能。根据在2009年的Git用户调查，GitHub是最流行的Git托管站点。除了允许个人和组织建立和访问保管中的代码以外，它也提供了一些方便社会化共同软件开发的功能，即一般人口中的社群功能，包括允许用户追踪其他用户、组织、软件库的动态，对软件代码的改动和bug提出评论等。GitHub也提供了分析功能，用于概观显示开发者们怎样在代码库上工作以及软件的开发活跃程度。
+服务# GitHub平台于2007年10月1日开始开发。网站于2008年2月以beta版本开始上线，4月份正式上线。 GitHub里面的项目可以通过标准的Git命令进行访问和操作。同时，所有的Git命令都可以用到GitHub项目上面。GitHub开发了针对Microsoft Windows和macOS操作系统的桌面客户端。此外，也可以使用第三方插件来实现Git功能。网站提供了一系列社交网络具有的功能，例如标星／赞（star）、关注（follow）、评论。用户可以通过复刻（fork）他人项目的形式参与开发，并可通过协作示意图来查看有多少开发者参与了开发并追踪最新的复刻版本。此外网站还有Wiki（通过一个名为 gollum 的软件实现）等功能。
+GitHub同时允许注册用户和非注册用户在网页中浏览项目，也可以以ZIP格式打包下载。但是用户必须注册登录一个账号才能讨论、创建并编辑项目、参与他人的项目和代码审查。GitHub支持建立不限数量的公开仓库，已付费用户可以建立私有仓库。2019年1月7日，GitHub宣布免费用户也可以建立私有仓库，私有仓库数量不限但每个仓库最多指定三个合作者。2020年4月14日，GitHub宣布进一步开放核心功能，取消私有仓库合作者数量限制，并降低了收费账号费。
+主要功能# GitHub通常用于软件开发。GitHub还支持以下格式和功能：
+文档：包括自动生成的、采用类Markdown语言的Readme文件（称作GitHub Flavored Markdown, GFM） 问题追踪系统（同时可用于功能需求） Wiki GitHub Pages支持用户通过软件仓库建立静态网站或静态博客（通过Jekyll的软件实现，但是也支持采用诸如 Hexo 等其他博客引擎搭建） 任务列表 甘特图 可视化的地理位置分析 预览3D渲染文件[16]。预览功能通过WebGL和Three.js实现 预览Adobe Photoshop的PSD文件，甚至可以比较同一文件的不同版本 开发语言# GitHub系统由GitHub公司的开发者Chris Wanstrath开发。系统采用了Ruby on Rails和Erlang作为后端。
+仓库许可证# GitHub的许可条款并不要求公有仓库满足自由软件标准。在建立软件仓库时，GitHub会询问用户准备采取的软件许可证，此外用户也可以使用自己的许可证。
+其他功能# GitHub企业版 GitHub Enterprise# GitHub Enterprise和GitHub的服务类似，不过它为大型企业的开发团队量身定制，并可提供自托管版本服务器软件。
+GitHub页面 GitHub Pages# GitHub Pages是GitHub提供的一个网页托管服务，可以用于存放静态网页，包括博客、项目文档甚至整本书。GitHub Pages的网站使用github.io的子域名，但是用户也可以使用第三方域名。Github Pages可以将仓库目录或 GitHub Actions 中传入的文件发布为静态网页源代码，一般可在仓库-&gt;设置-&gt;Pages里设置。
+摘要功能 Gist# GitHub提供一个粘贴箱风格的站点GitHub Gist。
+Tom Preston-Werner于2008年开发了Gist功能。Gist继承了粘贴箱的观念，此外还添加了版本控制、复刻、SSL加密等功能。因为代码片段也是Git仓库，所以单个代码片段可以容纳多个文件，并且可以通过Git进行操作。因此Gist更像一个小型项目。
+学生开发工具 Student Developer Pack# GitHub与Algolia、Microsoft Azure、Bitnami、Crowdflower、DigitalOcean、DNSimple、GitKraken、Heroku、HackHands、JetBrains、Namecheap、Name.com、Orchestrate、Screenhero、SendGrid、Stripe、Travis CI和虚幻引擎等共同合作，于2014年10月7日发起了一个名为GitHub学生开发者套装的项目。该项目为学生提供了一些免费的开发工具和服务">
+  <meta itemprop="wordCount" content="82">
+
+<title>「认识科普」GitHub | Xavier的文档站</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEGitHub/">
+<link rel="stylesheet" href="/book.min.930c11c48ac674f1f605465e2d9a18d432ebfd47c990599a77b95afd0d45a8df.css" integrity="sha256-kwwRxIrGdPH2BUZeLZoY1DLr/UfJkFmad7la/Q1FqN8=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/zh-cn.search.min.bc30d894bff7eaa1e7be2a04d9adf7650a3f5ed394c47daf95719b4664c99a29.js" integrity="sha256-vDDYlL/36qHnvioE2a33ZQo/XtOUxH2vlXGbRmTJmik=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Xavier的文档站</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/example/" class="">
+      首页</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-43379e8bd6de7b09303dc7295b98e3b4" class="toggle" checked />
+    <label for="section-43379e8bd6de7b09303dc7295b98e3b4" class="flex">
+      <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/" class="">
+        Git-Hugo站点搭建</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEGitHub/" class="active">
+      「认识科普」GitHub</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9CGitHub%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" class="">
+      「基础操作」GitHub操作流程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEHugo/" class="">
+      「认识科普」Hugo</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEMarkdown/" class="">
+      「认识科普」Markdown</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4e1eba7599919e1cf0575873dda6a93b" class="toggle"  />
+    <label for="section-4e1eba7599919e1cf0575873dda6a93b" class="flex">
+      <a role="button" class="">
+        硬件开发</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-11117843b7d604f84fc745873344d025" class="toggle"  />
+    <label for="section-11117843b7d604f84fc745873344d025" class="flex">
+      <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/" class="">
+        Arduino</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A5%9E%E4%BA%BA%E5%8F%91%E8%A8%80/" class="">
+      无厘头板块</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d54016606210290a29c27e35d63791b" class="toggle"  />
+    <label for="section-7d54016606210290a29c27e35d63791b" class="flex">
+      <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/" class="">
+        网页示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="toggle"  />
+    <label for="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="flex">
+      <a role="button" class="">
+        网页折叠示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/" class="">
+      3rd Level</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/4th-level/" class="">
+      4th Level</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/5th-level/" class="">
+      5th Level</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E5%86%99%E4%BD%9C%E6%A8%A1%E7%89%88/" class="">
+      这是一个模版</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a>
+      短代码</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/buttons/" class="">
+      Buttons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/columns/" class="">
+      Columns</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/details/" class="">
+      Details</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-885e6c1d8e625b7d893953c6f9f88c3e" class="toggle"  />
+    <label for="section-885e6c1d8e625b7d893953c6f9f88c3e" class="flex">
+      <a role="button" class="">
+        Experimental</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/asciinema/" class="">
+      Asciinema</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/badges/" class="">
+      Badges</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/cards/" class="">
+      Cards</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/images/" class="">
+      Images</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/hints/" class="">
+      Hints</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/mermaid/" class="">
+      Mermaid</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/steps/" class="">
+      Steps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/tabs/" class="">
+      Tabs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/katex/" class="">
+      KaTeX</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+<ul><li><a href="/posts/" title="Blog">Blog</a></li></ul>
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>「认识科普」GitHub</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述"><strong>概述</strong></a></li>
+    <li><a href="#服务"><strong>服务</strong></a></li>
+    <li><a href="#主要功能"><strong>主要功能</strong></a></li>
+    <li><a href="#开发语言"><strong>开发语言</strong></a></li>
+    <li><a href="#仓库许可证"><strong>仓库许可证</strong></a></li>
+    <li><a href="#其他功能"><strong>其他功能</strong></a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="认识github"><strong>认识GitHub</strong><a class="anchor" href="#%e8%ae%a4%e8%af%86github">#</a></h1>
+<blockquote class='book-hint note'>
+<p>此部分内容转载至<a href="https://zh.wikipedia.org/wiki/Wiki">Wiki</a>维基百科，自由的百科全书</p></blockquote><h2 id="概述"><strong>概述</strong><a class="anchor" href="#%e6%a6%82%e8%bf%b0">#</a></h2>
+<p><strong>GitHub</strong>是一个在线软件<a href="https://zh.wikipedia.org/wiki/%e6%ba%90%e4%bb%a3%e7%a0%81">源代码</a>托管服务平台，用于公开程序或软件的代码。使用<a href="https://zh.wikipedia.org/wiki/Git">Git</a>作为<a href="https://zh.wikipedia.org/wiki/%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6">版本控制</a>软件，由开发者<a href="https://zh.wikipedia.org/w/index.php?title=%e5%85%8b%e9%87%8c%e6%96%af%c2%b7%e6%b1%aa%e6%96%af%e5%b4%94%e6%96%af&amp;action=edit&amp;redlink=1">克里斯·汪斯崔斯</a>、<a href="https://zh.wikipedia.org/w/index.php?title=P%c2%b7J%c2%b7%e6%b5%b7%e7%89%b9&amp;action=edit&amp;redlink=1">P·J·海特</a>和<a href="https://zh.wikipedia.org/wiki/%e6%b1%a4%e5%a7%86%c2%b7%e6%99%ae%e9%9b%b7%e6%96%af%e9%a1%bf%c2%b7%e6%b2%83%e7%ba%b3">汤姆·普雷斯顿·沃纳</a>使用<a href="https://zh.wikipedia.org/wiki/Ruby_on_Rails">Ruby on Rails</a>编写而成。在2018年，GitHub被<a href="https://zh.wikipedia.org/wiki/%e5%be%ae%e8%bd%af">微软</a>公司收购。</p>
+<p>GitHub同时提供付费账户和免费账户。这两种账户都可以建立公开或私有的<a href="https://zh.wikipedia.org/wiki/%e4%bb%a3%e7%a0%81%e5%ba%93">代码仓库</a>，但付费用户拥有更多功能。根据在2009年的Git用户调查，GitHub是最流行的<a href="https://zh.wikipedia.org/wiki/Git">Git</a>托管站点。除了允许个人和组织建立和访问保管中的代码以外，它也提供了一些方便社会化共同软件开发的功能，即一般人口中的社群功能，包括允许用户追踪其他用户、组织、<a href="https://zh.wikipedia.org/wiki/%e8%bd%af%e4%bb%b6%e5%ba%93">软件库</a>的动态，对软件代码的改动和<a href="https://zh.wikipedia.org/wiki/%e7%a8%8b%e5%ba%8f%e9%94%99%e8%af%af">bug</a>提出评论等。GitHub也提供了分析功能，用于概观显示开发者们怎样在代码库上工作以及软件的开发活跃程度。</p>
+<h2 id="服务"><strong>服务</strong><a class="anchor" href="#%e6%9c%8d%e5%8a%a1">#</a></h2>
+<p>GitHub平台于2007年10月1日开始开发。网站于2008年2月以beta版本开始上线，4月份正式上线。 GitHub里面的项目可以通过标准的<a href="https://zh.wikipedia.org/wiki/Git">Git</a>命令进行访问和操作。同时，所有的Git命令都可以用到GitHub项目上面。GitHub开发了针对<a href="https://zh.wikipedia.org/wiki/Microsoft_Windows">Microsoft Windows</a>和<a href="https://zh.wikipedia.org/wiki/MacOS">macOS</a>操作系统的桌面客户端。此外，也可以使用第三方插件来实现Git功能。网站提供了一系列<a href="https://zh.wikipedia.org/wiki/%e7%a4%be%e4%ba%a4%e7%b6%b2%e7%b5%a1">社交网络</a>具有的功能，例如标星／赞（star）、关注（follow）、评论。用户可以通过<a href="https://zh.wikipedia.org/wiki/%e5%a4%8d%e5%88%bb_%28%e8%bd%af%e4%bb%b6%e5%b7%a5%e7%a8%8b%29">复刻</a>（fork）他人项目的形式参与开发，并可通过<a href="https://zh.wikipedia.org/w/index.php?title=%e5%8d%8f%e4%bd%9c%e7%a4%ba%e6%84%8f%e5%9b%be&amp;action=edit&amp;redlink=1">协作示意图</a>来查看有多少开发者参与了开发并追踪最新的复刻版本。此外网站还有<a href="https://zh.wikipedia.org/wiki/Wiki">Wiki</a>（通过一个名为 gollum 的软件实现）等功能。</p>
+<p>GitHub同时允许注册用户和非注册用户在网页中浏览项目，也可以以<a href="https://zh.wikipedia.org/wiki/ZIP%e6%a0%bc%e5%bc%8f">ZIP格式</a>打包下载。但是用户必须注册登录一个账号才能讨论、创建并编辑项目、参与他人的项目和<a href="https://zh.wikipedia.org/wiki/%e4%bb%a3%e7%a0%81%e5%ae%a1%e6%9f%a5">代码审查</a>。GitHub支持建立不限数量的公开仓库，已付费用户可以建立私有仓库。2019年1月7日，GitHub宣布免费用户也可以建立私有仓库，私有仓库数量不限但每个仓库最多指定三个合作者。2020年4月14日，GitHub宣布进一步开放核心功能，取消私有仓库合作者数量限制，并降低了收费账号费。</p>
+<h2 id="主要功能"><strong>主要功能</strong><a class="anchor" href="#%e4%b8%bb%e8%a6%81%e5%8a%9f%e8%83%bd">#</a></h2>
+<p>GitHub通常用于软件开发。GitHub还支持以下格式和功能：</p>
+<ul>
+<li>文档：包括自动生成的、采用类<a href="https://zh.wikipedia.org/wiki/Markdown">Markdown</a>语言的<a href="https://zh.wikipedia.org/wiki/Readme">Readme</a>文件（称作GitHub Flavored Markdown, GFM）</li>
+<li>问题追踪系统（同时可用于功能需求）</li>
+<li><a href="https://zh.wikipedia.org/wiki/Wiki">Wiki</a></li>
+<li>GitHub Pages支持用户通过软件仓库建立静态网站或静态博客（通过Jekyll的软件实现，但是也支持采用诸如 Hexo 等其他博客引擎搭建）</li>
+<li><a href="https://zh.wikipedia.org/wiki/%e6%97%b6%e9%97%b4%e7%ae%a1%e7%90%86">任务列表</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%e7%94%98%e7%89%b9%e5%9b%be">甘特图</a></li>
+<li>可视化的地理位置分析</li>
+<li>预览3D渲染文件[<a href="https://zh.wikipedia.org/wiki/GitHub#cite_note-3d-16">16]</a>。预览功能通过<a href="https://zh.wikipedia.org/wiki/WebGL">WebGL</a>和<a href="https://zh.wikipedia.org/wiki/Three.js">Three.js</a>实现</li>
+<li>预览<a href="https://zh.wikipedia.org/wiki/Adobe_Photoshop">Adobe Photoshop</a>的PSD文件，甚至可以比较同一文件的不同版本</li>
+</ul>
+<h2 id="开发语言"><strong>开发语言</strong><a class="anchor" href="#%e5%bc%80%e5%8f%91%e8%af%ad%e8%a8%80">#</a></h2>
+<p>GitHub系统由GitHub公司的开发者Chris Wanstrath开发。系统采用了<a href="https://zh.wikipedia.org/wiki/Ruby_on_Rails">Ruby on Rails</a>和<a href="https://zh.wikipedia.org/wiki/Erlang">Erlang</a>作为后端。</p>
+<h2 id="仓库许可证"><strong>仓库许可证</strong><a class="anchor" href="#%e4%bb%93%e5%ba%93%e8%ae%b8%e5%8f%af%e8%af%81">#</a></h2>
+<p>GitHub的许可条款并不要求公有仓库满足<a href="https://zh.wikipedia.org/wiki/%e8%87%aa%e7%94%b1%e8%bd%af%e4%bb%b6">自由软件</a>标准。在建立软件仓库时，GitHub会询问用户准备采取的<a href="https://zh.wikipedia.org/wiki/%e8%bd%af%e4%bb%b6%e8%ae%b8%e5%8f%af%e8%af%81">软件许可证</a>，此外用户也可以使用自己的许可证。</p>
+<h2 id="其他功能"><strong>其他功能</strong><a class="anchor" href="#%e5%85%b6%e4%bb%96%e5%8a%9f%e8%83%bd">#</a></h2>
+<div class="book-tabs">
+
+<input type="radio" class="toggle" name="tabs-0" id="tabs-0-0" checked="checked" /><label for="tabs-0-0">GitHub企业版</label><div class="book-tabs-content markdown-inner">
+<h1 id="github-enterprise">GitHub Enterprise<a class="anchor" href="#github-enterprise">#</a></h1>
+<p>GitHub Enterprise和GitHub的服务类似，不过它为大型企业的开发团队量身定制，并可提供自托管版本服务器软件。</p>
+</div>
+
+<input type="radio" class="toggle" name="tabs-0" id="tabs-0-1"  /><label for="tabs-0-1">GitHub页面</label><div class="book-tabs-content markdown-inner">
+<h1 id="github-pages">GitHub Pages<a class="anchor" href="#github-pages">#</a></h1>
+<p>GitHub Pages是GitHub提供的一个<a href="https://zh.wikipedia.org/wiki/%e7%b6%b2%e9%a0%81%e5%af%84%e5%ad%98%e6%9c%8d%e5%8b%99">网页托管服务</a>，可以用于存放静态网页，包括博客、项目文档甚至整本书。GitHub Pages的网站使用github.io的子域名，但是用户也可以使用第三方域名。Github Pages可以将仓库目录或 GitHub Actions 中传入的文件发布为静态网页源代码，一般可在仓库-&gt;设置-&gt;Pages里设置。</p>
+</div>
+
+<input type="radio" class="toggle" name="tabs-0" id="tabs-0-2"  /><label for="tabs-0-2">摘要功能</label><div class="book-tabs-content markdown-inner">
+<h1 id="gist">Gist<a class="anchor" href="#gist">#</a></h1>
+<p>GitHub提供一个<a href="https://zh.wikipedia.org/w/index.php?title=%e7%b2%98%e8%b4%b4%e7%ae%b1&amp;action=edit&amp;redlink=1">粘贴箱</a>风格的站点GitHub Gist。</p>
+<p>Tom Preston-Werner于2008年开发了Gist功能。Gist继承了<a href="https://zh.wikipedia.org/w/index.php?title=%e7%b2%98%e8%b4%b4%e7%ae%b1&amp;action=edit&amp;redlink=1">粘贴箱</a>的观念，此外还添加了版本控制、复刻、SSL加密等功能。因为代码片段也是Git仓库，所以单个代码片段可以容纳多个文件，并且可以通过Git进行操作。因此Gist更像一个小型项目。</p>
+</div>
+
+<input type="radio" class="toggle" name="tabs-0" id="tabs-0-3"  /><label for="tabs-0-3">学生开发工具</label><div class="book-tabs-content markdown-inner">
+<h1 id="student-developer-pack">Student Developer Pack<a class="anchor" href="#student-developer-pack">#</a></h1>
+<p>GitHub与Algolia、<a href="https://zh.wikipedia.org/wiki/Microsoft_Azure">Microsoft Azure</a>、<a href="https://zh.wikipedia.org/wiki/Bitnami">Bitnami</a>、<a href="https://zh.wikipedia.org/w/index.php?title=Crowdflower&amp;action=edit&amp;redlink=1">Crowdflower</a>、<a href="https://zh.wikipedia.org/wiki/DigitalOcean">DigitalOcean</a>、<a href="https://zh.wikipedia.org/w/index.php?title=DNSimple&amp;action=edit&amp;redlink=1">DNSimple</a>、GitKraken、Heroku、HackHands、JetBrains、<a href="https://zh.wikipedia.org/wiki/Namecheap">Namecheap</a>、<a href="https://zh.wikipedia.org/w/index.php?title=Name.com&amp;action=edit&amp;redlink=1">Name.com</a>、Orchestrate、Screenhero、<a href="https://zh.wikipedia.org/w/index.php?title=SendGrid&amp;action=edit&amp;redlink=1">SendGrid</a>、<a href="https://zh.wikipedia.org/wiki/Stripe">Stripe</a>、<a href="https://zh.wikipedia.org/wiki/Travis_CI">Travis CI</a>和<a href="https://zh.wikipedia.org/wiki/%e8%99%9a%e5%b9%bb%e5%bc%95%e6%93%8e">虚幻引擎</a>等共同合作，于2014年10月7日发起了一个名为GitHub学生开发者套装的项目。该项目为学生提供了一些免费的开发工具和服务</p>
+</div>
+
+<input type="radio" class="toggle" name="tabs-0" id="tabs-0-4"  /><label for="tabs-0-4">GitHub AI</label><div class="book-tabs-content markdown-inner">
+<h1 id="github-copilot">GitHub Copilot<a class="anchor" href="#github-copilot">#</a></h1>
+<p>GitHub Copilot 是微软公司在 GitHub 推出的AI服务，为代码编写、审查提供帮助。Copilot 最早被设计为在<a href="https://zh.wikipedia.org/wiki/%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">集成开发环境</a>和<a href="https://zh.wikipedia.org/wiki/%e6%ba%90%e4%bb%a3%e7%a0%81%e7%bc%96%e8%be%91%e5%99%a8">源代码编辑器</a>中按照的插件，现也可以在GitHub网页和终端使用。它的<a href="https://zh.wikipedia.org/wiki/Visual_Studio_Code">vscode</a>扩展是开源的注意GitHub Copilot 不是 <a href="https://zh.wikipedia.org/wiki/Microsoft_Copilot">Microsoft Copilot</a>。</p>
+</div>
+
+</div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Git-Hugo站点搭建</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9CGitHub%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" class="flex align-center">
+        <span>「基础操作」GitHub操作流程</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+  <div class="book-copyright flex justify-center">
+    <small>Xavier的文档站 - © 2026 Xavier 版权所有</small>
+  </div>
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述"><strong>概述</strong></a></li>
+    <li><a href="#服务"><strong>服务</strong></a></li>
+    <li><a href="#主要功能"><strong>主要功能</strong></a></li>
+    <li><a href="#开发语言"><strong>开发语言</strong></a></li>
+    <li><a href="#仓库许可证"><strong>仓库许可证</strong></a></li>
+    <li><a href="#其他功能"><strong>其他功能</strong></a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,23 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEGitHub/</loc>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Arduino/with-toc/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/</loc>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/with-toc/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/with-toc/</loc>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/with-toc/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/with-toc/</loc>
   </url><url>
     <loc>http://Xavier-Zev.github.io/docs/example/</loc>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Arduino/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9CGitHub%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/</loc>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Arduino/without-toc/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/</loc>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/without-toc/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/without-toc/</loc>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/without-toc/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/without-toc/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEHugo/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%A5%9E%E4%BA%BA%E5%8F%91%E8%A8%80/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/%E8%AE%A4%E8%AF%86%E7%A7%91%E6%99%AEMarkdown/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/</loc>
   </url><url>
     <loc>http://Xavier-Zev.github.io/docs/example/%E5%86%99%E4%BD%9C%E6%A8%A1%E7%89%88/</loc>
   </url><url>
@@ -28,9 +38,7 @@
     <loc>http://Xavier-Zev.github.io/posts/migrate-from-jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/</loc>
-  </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/</loc>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/</loc>
   </url><url>
     <loc>http://Xavier-Zev.github.io/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
@@ -74,13 +82,13 @@
     <loc>http://Xavier-Zev.github.io/tags/themes/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/4th-level/</loc>
-  </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/5th-level/</loc>
-  </url><url>
-    <loc>http://Xavier-Zev.github.io/docs/example/Git-Hugo%E7%BD%91%E9%A1%B5%E6%90%AD%E5%BB%BA/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/</loc>
-  </url><url>
     <loc>http://Xavier-Zev.github.io/docs/example/hidden/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/4th-level/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/5th-level/</loc>
+  </url><url>
+    <loc>http://Xavier-Zev.github.io/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/</loc>
   </url><url>
     <loc>http://Xavier-Zev.github.io/docs/shortcodes/buttons/</loc>
   </url><url>

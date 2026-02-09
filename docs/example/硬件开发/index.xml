@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>硬件开发 on Xavier的文档站</title>
+    <link>http://Xavier-Zev.github.io/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/</link>
+    <description>Recent content in 硬件开发 on Xavier的文档站</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <copyright>© 2026 Xavier 版权所有</copyright>
+    <atom:link href="http://Xavier-Zev.github.io/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
