@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arduino 有用资源 on Xavier的文档站</title>
+    <link>http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%9C%89%E7%94%A8%E8%B5%84%E6%BA%90/</link>
+    <description>Recent content in Arduino 有用资源 on Xavier的文档站</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <copyright>© 2026 Xavier 版权所有</copyright>
+    <atom:link href="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%9C%89%E7%94%A8%E8%B5%84%E6%BA%90/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

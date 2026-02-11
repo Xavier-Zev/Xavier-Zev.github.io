@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Arduino - I/O 函数# Arduino 板上的引脚可以配置为输入或输出。我们将解释这些模式下引脚的功能。需要注意的是，大多数 Arduino 模拟引脚的配置和使用方式与数字引脚完全相同。
+配置为输入的引脚# Arduino 引脚默认配置为输入，因此当您将它们用作输入时，无需使用 pinMode() 明确声明为输入。以这种方式配置的引脚被称为处于高阻抗状态。输入引脚对它们正在采样的电路的要求极小，相当于引脚前面的 100 兆欧串联电阻。
+这意味着将输入引脚从一种状态切换到另一种状态所需的电流非常小。这使得引脚可用于实现电容式触摸传感器或将 LED 读取为光电二极管等任务。
+配置为 pinMode(pin, INPUT) 的引脚，如果未连接任何设备，或者连接的电线未连接到其他电路，则报告引脚状态看似随机的变化，从环境中拾取电气噪声，或电容耦合附近引脚的状态。
+上拉电阻# 如果没有输入，上拉电阻通常可用于将输入引脚引导至已知状态。这可以通过在输入端添加上拉电阻（至 &#43;5V）或下拉电阻（电阻接地）来实现。 10K 电阻是上拉或下拉电阻的合适值。
+使用内置上拉电阻，引脚配置为输入# Atmega 芯片内置有 20,000 个上拉电阻，可通过软件访问。通过将 pinMode() 设置为 INPUT_PULLUP 可访问这些内置上拉电阻。这有效地反转了 INPUT 模式的行为，其中 HIGH 表示传感器关闭，LOW 表示传感器打开。此上拉电阻的值取决于所使用的微控制器。在大多数基于 AVR 的主板上，该值保证在 20kΩ 和 50kΩ 之间。在 Arduino Due 上，它介于 50kΩ 和 150kΩ 之间。有关确切值，请参阅电路板上微控制器的数据表。
+将传感器连接到配置了 INPUT_PULLUP 的引脚时，另一端应接地。如果是简单开关，这会导致引脚在开关打开时读取 HIGH，在按下开关时读取 LOW。上拉电阻提供足够的电流来点亮连接到配置为输入的引脚的 LED。如果项目中的 LED 似乎在工作，但非常暗淡，则很可能就是这种情况。
+控制引脚是 HIGH 还是 LOW 的相同寄存器（内部芯片内存位置）控制上拉电阻。因此，如果引脚配置为在引脚处于 INPUT 模式时打开上拉电阻，则如果随后使用 pinMode() 将引脚切换到 OUTPUT 模式，则引脚将配置为 HIGH。这也适用于其他方向，如果使用 pinMode() 切换到输入，则处于高电平状态的输出引脚将设置上拉电阻。
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino-IO%E5%87%BD%E6%95%B0/">
+  <meta property="og:site_name" content="Xavier的文档站">
+  <meta property="og:title" content="Arduino I/O函数">
+  <meta property="og:description" content="Arduino - I/O 函数# Arduino 板上的引脚可以配置为输入或输出。我们将解释这些模式下引脚的功能。需要注意的是，大多数 Arduino 模拟引脚的配置和使用方式与数字引脚完全相同。
+配置为输入的引脚# Arduino 引脚默认配置为输入，因此当您将它们用作输入时，无需使用 pinMode() 明确声明为输入。以这种方式配置的引脚被称为处于高阻抗状态。输入引脚对它们正在采样的电路的要求极小，相当于引脚前面的 100 兆欧串联电阻。
+这意味着将输入引脚从一种状态切换到另一种状态所需的电流非常小。这使得引脚可用于实现电容式触摸传感器或将 LED 读取为光电二极管等任务。
+配置为 pinMode(pin, INPUT) 的引脚，如果未连接任何设备，或者连接的电线未连接到其他电路，则报告引脚状态看似随机的变化，从环境中拾取电气噪声，或电容耦合附近引脚的状态。
+上拉电阻# 如果没有输入，上拉电阻通常可用于将输入引脚引导至已知状态。这可以通过在输入端添加上拉电阻（至 &#43;5V）或下拉电阻（电阻接地）来实现。 10K 电阻是上拉或下拉电阻的合适值。
+使用内置上拉电阻，引脚配置为输入# Atmega 芯片内置有 20,000 个上拉电阻，可通过软件访问。通过将 pinMode() 设置为 INPUT_PULLUP 可访问这些内置上拉电阻。这有效地反转了 INPUT 模式的行为，其中 HIGH 表示传感器关闭，LOW 表示传感器打开。此上拉电阻的值取决于所使用的微控制器。在大多数基于 AVR 的主板上，该值保证在 20kΩ 和 50kΩ 之间。在 Arduino Due 上，它介于 50kΩ 和 150kΩ 之间。有关确切值，请参阅电路板上微控制器的数据表。
+将传感器连接到配置了 INPUT_PULLUP 的引脚时，另一端应接地。如果是简单开关，这会导致引脚在开关打开时读取 HIGH，在按下开关时读取 LOW。上拉电阻提供足够的电流来点亮连接到配置为输入的引脚的 LED。如果项目中的 LED 似乎在工作，但非常暗淡，则很可能就是这种情况。
+控制引脚是 HIGH 还是 LOW 的相同寄存器（内部芯片内存位置）控制上拉电阻。因此，如果引脚配置为在引脚处于 INPUT 模式时打开上拉电阻，则如果随后使用 pinMode() 将引脚切换到 OUTPUT 模式，则引脚将配置为 HIGH。这也适用于其他方向，如果使用 pinMode() 切换到输入，则处于高电平状态的输出引脚将设置上拉电阻。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="Arduino I/O函数">
+  <meta itemprop="description" content="Arduino - I/O 函数# Arduino 板上的引脚可以配置为输入或输出。我们将解释这些模式下引脚的功能。需要注意的是，大多数 Arduino 模拟引脚的配置和使用方式与数字引脚完全相同。
+配置为输入的引脚# Arduino 引脚默认配置为输入，因此当您将它们用作输入时，无需使用 pinMode() 明确声明为输入。以这种方式配置的引脚被称为处于高阻抗状态。输入引脚对它们正在采样的电路的要求极小，相当于引脚前面的 100 兆欧串联电阻。
+这意味着将输入引脚从一种状态切换到另一种状态所需的电流非常小。这使得引脚可用于实现电容式触摸传感器或将 LED 读取为光电二极管等任务。
+配置为 pinMode(pin, INPUT) 的引脚，如果未连接任何设备，或者连接的电线未连接到其他电路，则报告引脚状态看似随机的变化，从环境中拾取电气噪声，或电容耦合附近引脚的状态。
+上拉电阻# 如果没有输入，上拉电阻通常可用于将输入引脚引导至已知状态。这可以通过在输入端添加上拉电阻（至 &#43;5V）或下拉电阻（电阻接地）来实现。 10K 电阻是上拉或下拉电阻的合适值。
+使用内置上拉电阻，引脚配置为输入# Atmega 芯片内置有 20,000 个上拉电阻，可通过软件访问。通过将 pinMode() 设置为 INPUT_PULLUP 可访问这些内置上拉电阻。这有效地反转了 INPUT 模式的行为，其中 HIGH 表示传感器关闭，LOW 表示传感器打开。此上拉电阻的值取决于所使用的微控制器。在大多数基于 AVR 的主板上，该值保证在 20kΩ 和 50kΩ 之间。在 Arduino Due 上，它介于 50kΩ 和 150kΩ 之间。有关确切值，请参阅电路板上微控制器的数据表。
+将传感器连接到配置了 INPUT_PULLUP 的引脚时，另一端应接地。如果是简单开关，这会导致引脚在开关打开时读取 HIGH，在按下开关时读取 LOW。上拉电阻提供足够的电流来点亮连接到配置为输入的引脚的 LED。如果项目中的 LED 似乎在工作，但非常暗淡，则很可能就是这种情况。
+控制引脚是 HIGH 还是 LOW 的相同寄存器（内部芯片内存位置）控制上拉电阻。因此，如果引脚配置为在引脚处于 INPUT 模式时打开上拉电阻，则如果随后使用 pinMode() 将引脚切换到 OUTPUT 模式，则引脚将配置为 HIGH。这也适用于其他方向，如果使用 pinMode() 切换到输入，则处于高电平状态的输出引脚将设置上拉电阻。">
+  <meta itemprop="wordCount" content="360">
+
+<title>Arduino I/O函数 | Xavier的文档站</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino-IO%E5%87%BD%E6%95%B0/">
+<link rel="stylesheet" href="/book.min.c13c511b7f1cabadff400eda6fca1d7f995582311b2fc0dbd79f56b33a0ca33e.css" integrity="sha256-wTxRG38cq63/QA7ab8odf5lVgjEbL8Db159WszoMoz4=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/zh-cn.search.min.caffb0452db40746d692bd9e2250be60487ca05f068f826a3066fc6eb65377e1.js" integrity="sha256-yv&#43;wRS20B0bWkr2eIlC&#43;YEh8oF8Gj4JqMGb8brZTd&#43;E=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Xavier的文档站</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/example/" class="">
+      首页</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-43379e8bd6de7b09303dc7295b98e3b4" class="toggle"  />
+    <label for="section-43379e8bd6de7b09303dc7295b98e3b4" class="flex">
+      <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/" class="">
+        Git-Hugo站点搭建</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/GitHub/" class="">
+      GitHub</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/GitHub%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" class="">
+      GitHub操作流程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/Hugo/" class="">
+      Hugo</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/Markdown/" class="">
+      Markdown</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4e1eba7599919e1cf0575873dda6a93b" class="toggle"  />
+    <label for="section-4e1eba7599919e1cf0575873dda6a93b" class="flex">
+      <a role="button" class="">
+        硬件开发</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-11117843b7d604f84fc745873344d025" class="toggle"  />
+    <label for="section-11117843b7d604f84fc745873344d025" class="flex">
+      <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/" class="">
+        Arduino</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d54016606210290a29c27e35d63791b" class="toggle"  />
+    <label for="section-7d54016606210290a29c27e35d63791b" class="flex">
+      <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/" class="">
+        网页示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="toggle"  />
+    <label for="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="flex">
+      <a role="button" class="">
+        网页折叠示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/" class="">
+      3rd Level</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/4th-level/" class="">
+      4th Level</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/5th-level/" class="">
+      5th Level</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E5%86%99%E4%BD%9C%E6%A8%A1%E7%89%88/" class="">
+      这是一个模版</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2cf273eceb77c186c5037e7dfdec429b" class="toggle" checked />
+    <label for="section-2cf273eceb77c186c5037e7dfdec429b" class="flex">
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/" class="">
+        Arduino</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e9b9df62a6b31c481f3397b76f684ac4" class="toggle"  />
+    <label for="section-e9b9df62a6b31c481f3397b76f684ac4" class="flex">
+      <a role="button" class="">
+        Arduino 教程</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%A6%82%E8%BF%B0/" class="">
+      Arduino 概述</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E8%B7%AF%E6%9D%BF%E8%AF%B4%E6%98%8E/" class="">
+      Arduino 电路板说明</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="">
+      Arduino 开发环境配置</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" class="">
+      Arduino 程序结构</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0/" class="">
+      Arduino函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/" class="">
+      Arduino变量和常量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="">
+      Arduino字符串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E8%B1%A1/" class="">
+      Arduino字符串对象</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%BE%AA%E7%8E%AF/" class="">
+      Arduino循环</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" class="">
+      Arduino控制语句</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="">
+      Arduino数据类型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E7%BB%84/" class="">
+      Arduino数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%97%B6%E9%97%B4/" class="">
+      Arduino时间</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E8%BF%90%E7%AE%97%E7%AC%A6/" class="">
+      Arduino运算符</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-746f3e448e3753f91409b45c167b5f3c" class="toggle" checked />
+    <label for="section-746f3e448e3753f91409b45c167b5f3c" class="flex">
+      <a role="button" class="">
+        Arduino 函数库</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino-IO%E5%87%BD%E6%95%B0/" class="active">
+      Arduino I/O函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E9%AB%98%E7%BA%A7IO%E5%87%BD%E6%95%B0/" class="">
+      Arduino 高级I/O函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0/" class="">
+      Arduino 字符函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E6%95%B0%E5%AD%A6%E5%BA%93/" class="">
+      Arduino 数学库</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/" class="">
+      Arduino 三角函数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1505bf7fe71578613d9fdfeefbf0a6ed" class="toggle"  />
+    <label for="section-1505bf7fe71578613d9fdfeefbf0a6ed" class="flex">
+      <a role="button" class="">
+        Arduino 高级</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-Due-Zero/" class="">
+      Arduino Due &amp; Zero</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E4%B8%AD%E6%96%AD/" class="">
+      Arduino 中断</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E4%B8%B2%E8%A1%8C%E5%A4%96%E8%AE%BE%E6%8E%A5%E5%8F%A3/" class="">
+      Arduino 串行外设接口</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E5%86%85%E9%83%A8%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF/" class="">
+      Arduino 内部集成电路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E8%84%89%E5%86%B2%E5%AE%BD%E5%BA%A6%E8%B0%83%E5%88%B6/" class="">
+      Arduino 脉冲宽度调制</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="">
+      Arduino 随机数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f75ef732436cb7d5a31e8878bc4c2eae" class="toggle"  />
+    <label for="section-f75ef732436cb7d5a31e8878bc4c2eae" class="flex">
+      <a role="button" class="">
+        Arduino 项目</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-LED-%E6%9D%A1%E5%BD%A2%E5%9B%BE/" class="">
+      Arduino Led 条形图</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E6%B8%90%E5%8F%98-LED/" class="">
+      Arduino 渐变 Led</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E8%AF%BB%E5%8F%96%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%8E%8B/" class="">
+      Arduino 读取模拟电压</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E4%B8%B2%E8%A1%8C/" class="">
+      Arduino 键盘串行</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E6%B3%A8%E9%94%80/" class="">
+      Arduino 键盘注销</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E6%B6%88%E6%81%AF/" class="">
+      Arduino 键盘消息</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%97%AA%E7%83%81%E7%9A%84-LED/" class="">
+      Arduino 闪烁的 Led</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%BC%A0%E6%A0%87%E6%8C%89%E9%92%AE%E6%8E%A7%E5%88%B6/" class="">
+      Arduino 鼠标按钮控制</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c8c442dc7c6d3d2a655cab5369840e44" class="toggle"  />
+    <label for="section-c8c442dc7c6d3d2a655cab5369840e44" class="flex">
+      <a role="button" class="">
+        Arduino 传感器</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-PIR-%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino Pir 传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B0%B4%E6%A3%80%E6%B5%8B%E5%99%A8%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 水检测器传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 温度传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 湿度传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E8%B6%85%E5%A3%B0%E6%B3%A2%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 超声波传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E8%BF%9E%E6%8E%A5%E5%BC%80%E5%85%B3/" class="">
+      Arduino 连接开关</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-16c9070ad063dd9b24260556c82fcb3d" class="toggle"  />
+    <label for="section-16c9070ad063dd9b24260556c82fcb3d" class="flex">
+      <a role="button" class="">
+        Arduino 电机控制</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E4%BC%BA%E6%9C%8D%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 伺服电机</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 步进电机</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 直流电机</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2af01ba791de5d4ba6dc53f7099efd2a" class="toggle"  />
+    <label for="section-2af01ba791de5d4ba6dc53f7099efd2a" class="flex">
+      <a role="button" class="">
+        Arduino 声音</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 无线通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 网络通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E9%9F%B3%E8%B0%83%E5%BA%93/" class="">
+      Arduino 音调库</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5641606bac6c8d83b454df42ec42af2b" class="toggle"  />
+    <label for="section-5641606bac6c8d83b454df42ec42af2b" class="flex">
+      <a role="button" class="">
+        Arduino 有用资源</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a>
+      短代码</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/buttons/" class="">
+      Buttons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/columns/" class="">
+      Columns</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/details/" class="">
+      Details</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-885e6c1d8e625b7d893953c6f9f88c3e" class="toggle"  />
+    <label for="section-885e6c1d8e625b7d893953c6f9f88c3e" class="flex">
+      <a role="button" class="">
+        Experimental</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/asciinema/" class="">
+      Asciinema</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/badges/" class="">
+      Badges</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/cards/" class="">
+      Cards</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/images/" class="">
+      Images</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/hints/" class="">
+      Hints</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/mermaid/" class="">
+      Mermaid</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/steps/" class="">
+      Steps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/tabs/" class="">
+      Tabs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/katex/" class="">
+      KaTeX</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+<ul><li><a href="/posts/" title="Blog">Blog</a></li></ul>
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino I/O函数</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#arduino---io-函数">Arduino - I/O 函数</a></li>
+        <li><a href="#配置为输入的引脚">配置为输入的引脚</a></li>
+        <li><a href="#上拉电阻">上拉电阻</a>
+          <ul>
+            <li><a href="#使用内置上拉电阻引脚配置为输入">使用内置上拉电阻，引脚配置为输入</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置为输出的引脚">配置为输出的引脚</a></li>
+        <li><a href="#pinmode-函数">pinMode() 函数</a>
+          <ul>
+            <li><a href="#pinmode-函数语法">pinMode() 函数语法</a></li>
+          </ul>
+        </li>
+        <li><a href="#digitalwrite-函数">digitalWrite() 函数</a>
+          <ul>
+            <li><a href="#digitalwrite-函数语法">digitalWrite() 函数语法</a></li>
+          </ul>
+        </li>
+        <li><a href="#analogread--函数">analogRead( ) 函数</a>
+          <ul>
+            <li><a href="#analogread-函数语法">analogRead() 函数语法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="arduino---io-函数">Arduino - I/O 函数<a class="anchor" href="#arduino---io-%e5%87%bd%e6%95%b0">#</a></h2>
+<p>Arduino 板上的引脚可以配置为输入或输出。我们将解释这些模式下引脚的功能。需要注意的是，大多数 Arduino 模拟引脚的配置和使用方式与数字引脚完全相同。</p>
+<h2 id="配置为输入的引脚">配置为输入的引脚<a class="anchor" href="#%e9%85%8d%e7%bd%ae%e4%b8%ba%e8%be%93%e5%85%a5%e7%9a%84%e5%bc%95%e8%84%9a">#</a></h2>
+<p>Arduino 引脚默认配置为输入，因此当您将它们用作输入时，无需使用 <strong>pinMode()</strong> 明确声明为输入。以这种方式配置的引脚被称为处于高阻抗状态。输入引脚对它们正在采样的电路的要求极小，相当于引脚前面的 100 兆欧串联电阻。</p>
+<p>这意味着将输入引脚从一种状态切换到另一种状态所需的电流非常小。这使得引脚可用于实现电容式触摸传感器或将 LED 读取为光电二极管等任务。</p>
+<p>配置为 pinMode(pin, INPUT) 的引脚，如果未连接任何设备，或者连接的电线未连接到其他电路，则报告引脚状态看似随机的变化，从环境中拾取电气噪声，或电容耦合附近引脚的状态。</p>
+<h2 id="上拉电阻">上拉电阻<a class="anchor" href="#%e4%b8%8a%e6%8b%89%e7%94%b5%e9%98%bb">#</a></h2>
+<p>如果没有输入，上拉电阻通常可用于将输入引脚引导至已知状态。这可以通过在输入端添加上拉电阻（至 +5V）或下拉电阻（电阻接地）来实现。 10K 电阻是上拉或下拉电阻的合适值。</p>
+<h3 id="使用内置上拉电阻引脚配置为输入">使用内置上拉电阻，引脚配置为输入<a class="anchor" href="#%e4%bd%bf%e7%94%a8%e5%86%85%e7%bd%ae%e4%b8%8a%e6%8b%89%e7%94%b5%e9%98%bb%e5%bc%95%e8%84%9a%e9%85%8d%e7%bd%ae%e4%b8%ba%e8%be%93%e5%85%a5">#</a></h3>
+<p>Atmega 芯片内置有 20,000 个上拉电阻，可通过软件访问。通过将 <strong>pinMode()</strong> 设置为 INPUT_PULLUP 可访问这些内置上拉电阻。这有效地反转了 INPUT 模式的行为，其中 HIGH 表示传感器关闭，LOW 表示传感器打开。此上拉电阻的值取决于所使用的微控制器。在大多数基于 AVR 的主板上，该值保证在 20kΩ 和 50kΩ 之间。在 Arduino Due 上，它介于 50kΩ 和 150kΩ 之间。有关确切值，请参阅电路板上微控制器的数据表。</p>
+<p>将传感器连接到配置了 INPUT_PULLUP 的引脚时，另一端应接地。如果是简单开关，这会导致引脚在开关打开时读取 HIGH，在按下开关时读取 LOW。上拉电阻提供足够的电流来点亮连接到配置为输入的引脚的 LED。如果项目中的 LED 似乎在工作，但非常暗淡，则很可能就是这种情况。</p>
+<p>控制引脚是 HIGH 还是 LOW 的相同寄存器（内部芯片内存位置）控制上拉电阻。因此，如果引脚配置为在引脚处于 INPUT 模式时打开上拉电阻，则如果随后使用 pinMode() 将引脚切换到 OUTPUT 模式，则引脚将配置为 HIGH。这也适用于其他方向，如果使用 pinMode() 切换到输入，则处于高电平状态的输出引脚将设置上拉电阻。</p>
+<p><strong>示例</strong></p>
+<pre tabindex="0"><code>pinMode(3,INPUT) ; // 将引脚设置为输入，而不使用内置上拉电阻
+pinMode(5,INPUT_PULLUP) ; // 使用内置上拉电阻将引脚设置为输入</code></pre><h2 id="配置为输出的引脚">配置为输出的引脚<a class="anchor" href="#%e9%85%8d%e7%bd%ae%e4%b8%ba%e8%be%93%e5%87%ba%e7%9a%84%e5%bc%95%e8%84%9a">#</a></h2>
+<p>使用 pinMode() 配置为输出的引脚处于低阻抗状态。这意味着它们可以为其他电路提供大量电流。Atmega 引脚可以为其他设备/电路提供（提供正电流）或吸收（提供负电流）高达 40 mA（毫安）的电流。这个电流足以点亮 LED（不要忘记串联电阻），或运行许多传感器，但不足以运行继电器、螺线管或电机。</p>
+<p>尝试从输出引脚运行高电流设备，可能会损坏或毁坏引脚中的输出晶体管，或损坏整个 Atmega 芯片。通常，这会导致微控制器中的&quot;死&quot;引脚，但其余芯片仍能正常工作。因此，除非特定应用需要从引脚吸取最大电流，否则最好通过 470Ω 或 1k 电阻将 OUTPUT 引脚连接到其他设备。</p>
+<h2 id="pinmode-函数">pinMode() 函数<a class="anchor" href="#pinmode-%e5%87%bd%e6%95%b0">#</a></h2>
+<p>pinMode() 函数用于将特定引脚配置为输入或输出。可以使用 INPUT_PULLUP 模式启用内部上拉电阻。此外，INPUT 模式明确禁用内部上拉电阻。</p>
+<h3 id="pinmode-函数语法">pinMode() 函数语法<a class="anchor" href="#pinmode-%e5%87%bd%e6%95%b0%e8%af%ad%e6%b3%95">#</a></h3>
+<pre tabindex="0"><code>Void setup () {
+pinMode (pin , mode);
+}</code></pre><ul>
+<li><strong>pin</strong> − 您希望设置其模式的引脚编号</li>
+<li><strong>mode</strong> − INPUT、OUTPUT 或 INPUT_PULLUP。</li>
+</ul>
+<p><strong>示例</strong></p>
+<pre tabindex="0"><code>int button = 5 ; // 按钮连接到引脚 5
+int LED = 6; // LED 连接到引脚 6
+
+void setup () {
+    pinMode(button , INPUT_PULLUP);
+    // 使用上拉电阻将数字引脚设置为输入
+    pinMode(button , OUTPUT); // 将数字引脚设置为输出
+}
+
+void setup () {
+    If (digitalRead(button ) == LOW) // 如果按钮被按下 
+    {
+        digitalWrite(LED,HIGH); // 打开 led
+        delay(500); // 延迟 500 毫秒
+        digitalWrite(LED,LOW); // 关闭 led
+        delay(500); // 延迟 500 毫秒
+    }
+}</code></pre><h2 id="digitalwrite-函数">digitalWrite() 函数<a class="anchor" href="#digitalwrite-%e5%87%bd%e6%95%b0">#</a></h2>
+<p><strong>digitalWrite()</strong> 函数用于将 HIGH 或 LOW 值写入数字引脚。如果引脚已通过 <a href="https://www.arduino.cc/en/Reference/PinMode">pinMode()</a> 配置为输出，则其电压将设置为相应值：HIGH 为 5V（或 3.3V 板上的 3.3V），LOW 为 0V（接地）。如果引脚配置为输入，digitalWrite() 将启用（​​HIGH）或禁用（LOW）输入引脚上的内部上拉电阻。建议将 <a href="https://www.arduino.cc/en/Reference/PinMode">pinMode()</a> 设置为 INPUT_PULLUP，以启用内部上拉电阻。</p>
+<p>如果您未将 pinMode() 设置为 OUTPUT，并将 LED 连接到引脚，则在调用 digitalWrite(HIGH) 时，LED 可能会变暗。如果不明确设置 pinMode()，digitalWrite() 将启用内部上拉电阻，其作用类似于大型限流电阻。</p>
+<h3 id="digitalwrite-函数语法">digitalWrite() 函数语法<a class="anchor" href="#digitalwrite-%e5%87%bd%e6%95%b0%e8%af%ad%e6%b3%95">#</a></h3>
+<pre tabindex="0"><code>Void loop() {
+digitalWrite (pin ,value);
+}</code></pre><ul>
+<li><strong>pin</strong> − 您希望设置其模式的引脚编号</li>
+<li><strong>value</strong> − HIGH 或 LOW。</li>
+</ul>
+<p><strong>示例</strong></p>
+<pre tabindex="0"><code>int LED = 6; // LED 连接到引脚 6
+
+void setup () {
+	pinMode(LED, OUTPUT); // 将数字引脚设置为输出
+}
+
+void setup () {
+    digitalWrite(LED,HIGH); // 打开 led
+    delay(500); // 延迟 500 毫秒
+    digitalWrite(LED,LOW); // 关闭 led
+    delay(500); // 延迟 500 毫秒
+}</code></pre><h2 id="analogread--函数">analogRead( ) 函数<a class="anchor" href="#analogread--%e5%87%bd%e6%95%b0">#</a></h2>
+<p>Arduino 能够检测是否有电压施加到其某个引脚，并通过 digitalRead() 函数报告该情况。开/关传感器（检测物体的存在）与模拟传感器（其值不断变化）之间存在差异。为了读取这种类型的传感器，我们需要不同类型的引脚。</p>
+<p>在 Arduino 板的右下角，您将看到六个标记为&quot;Analog In&quot;的引脚。这些特殊引脚不仅可以告知是否有电压施加到它们，还可以告知其值。通过使用 <strong>analogRead()</strong> 函数，我们可以读取施加到其中一个引脚的电压。</p>
+<p>此函数返回 0 到 1023 之间的数字，表示 0 到 5 伏之间的电压。例如，如果在引脚 0 上施加 2.5 V 的电压，analogRead(0) 将返回 512。</p>
+<h3 id="analogread-函数语法">analogRead() 函数语法<a class="anchor" href="#analogread-%e5%87%bd%e6%95%b0%e8%af%ad%e6%b3%95">#</a></h3>
+<pre tabindex="0"><code>analogRead(pin);</code></pre><ul>
+<li><strong>pin</strong> − 要读取的模拟输入引脚编号（大多数电路板上为 0 到 5，Mini 和 Nano 上为 0 到 7，Mega 上为 0 到 15）</li>
+</ul>
+<p><strong>示例</strong></p>
+<pre tabindex="0"><code>int analogPin = 3;//电位器电位器（中间端子）
+// 连接到模拟引脚 3
+int val = 0; // 用于存储读取值的变量
+
+void setup() {
+	Serial.begin(9600); // 设置串行
+}
+
+void loop() {
+    val = analogRead(analogPin); // 读取输入引脚
+    Serial.println(val); // 调试值
+}</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E8%BF%90%E7%AE%97%E7%AC%A6/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Arduino运算符</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E9%AB%98%E7%BA%A7IO%E5%87%BD%E6%95%B0/" class="flex align-center">
+        <span>Arduino 高级I/O函数</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+  <div class="book-copyright flex justify-center">
+    <small>Xavier的文档站 - © 2026 Xavier 版权所有</small>
+  </div>
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#arduino---io-函数">Arduino - I/O 函数</a></li>
+        <li><a href="#配置为输入的引脚">配置为输入的引脚</a></li>
+        <li><a href="#上拉电阻">上拉电阻</a>
+          <ul>
+            <li><a href="#使用内置上拉电阻引脚配置为输入">使用内置上拉电阻，引脚配置为输入</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置为输出的引脚">配置为输出的引脚</a></li>
+        <li><a href="#pinmode-函数">pinMode() 函数</a>
+          <ul>
+            <li><a href="#pinmode-函数语法">pinMode() 函数语法</a></li>
+          </ul>
+        </li>
+        <li><a href="#digitalwrite-函数">digitalWrite() 函数</a>
+          <ul>
+            <li><a href="#digitalwrite-函数语法">digitalWrite() 函数语法</a></li>
+          </ul>
+        </li>
+        <li><a href="#analogread--函数">analogRead( ) 函数</a>
+          <ul>
+            <li><a href="#analogread-函数语法">analogRead() 函数语法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

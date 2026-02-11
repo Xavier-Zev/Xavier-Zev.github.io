@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content=" Arduino - 伺服电机# 更新于 2024/6/19 19:01:29
+伺服电机是一种带有输出轴的小型设备。通过向伺服电机发送编码信号，可以将此轴定位到特定的角度位置。只要输入线上存在编码信号，伺服电机就会保持轴的角度位置。如果编码信号发生变化，轴的角度位置也会发生变化。实际上，伺服电机用于无线电遥控飞机，以定位升降舵和方向舵等控制面。它们还用于无线电遥控汽车、木偶，当然还有机器人。
+伺服电机在机器人技术中非常有用。电机体积小，具有内置控制电路，并且相对于其尺寸而言非常强大。标准伺服电机（例如 Futaba S-148）具有 42 盎司/英寸的扭矩，相对于其尺寸而言非常强大。它还会根据机械负载来消耗功率。因此，轻负载伺服器不会消耗太多能量。
+下图显示了伺服电机的内部结构。您可以看到控制电路、电机、一组齿轮和外壳。您还可以看到连接到外界的 3 根电线。一根用于电源（&#43;5 伏），一根用于接地，白线是控制线。
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E4%BC%BA%E6%9C%8D%E7%94%B5%E6%9C%BA/">
+  <meta property="og:site_name" content="Xavier的文档站">
+  <meta property="og:title" content="Xavier的文档站">
+  <meta property="og:description" content="Arduino - 伺服电机# 更新于 2024/6/19 19:01:29
+伺服电机是一种带有输出轴的小型设备。通过向伺服电机发送编码信号，可以将此轴定位到特定的角度位置。只要输入线上存在编码信号，伺服电机就会保持轴的角度位置。如果编码信号发生变化，轴的角度位置也会发生变化。实际上，伺服电机用于无线电遥控飞机，以定位升降舵和方向舵等控制面。它们还用于无线电遥控汽车、木偶，当然还有机器人。
+伺服电机在机器人技术中非常有用。电机体积小，具有内置控制电路，并且相对于其尺寸而言非常强大。标准伺服电机（例如 Futaba S-148）具有 42 盎司/英寸的扭矩，相对于其尺寸而言非常强大。它还会根据机械负载来消耗功率。因此，轻负载伺服器不会消耗太多能量。
+下图显示了伺服电机的内部结构。您可以看到控制电路、电机、一组齿轮和外壳。您还可以看到连接到外界的 3 根电线。一根用于电源（&#43;5 伏），一根用于接地，白线是控制线。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="Xavier的文档站">
+  <meta itemprop="description" content="Arduino - 伺服电机# 更新于 2024/6/19 19:01:29
+伺服电机是一种带有输出轴的小型设备。通过向伺服电机发送编码信号，可以将此轴定位到特定的角度位置。只要输入线上存在编码信号，伺服电机就会保持轴的角度位置。如果编码信号发生变化，轴的角度位置也会发生变化。实际上，伺服电机用于无线电遥控飞机，以定位升降舵和方向舵等控制面。它们还用于无线电遥控汽车、木偶，当然还有机器人。
+伺服电机在机器人技术中非常有用。电机体积小，具有内置控制电路，并且相对于其尺寸而言非常强大。标准伺服电机（例如 Futaba S-148）具有 42 盎司/英寸的扭矩，相对于其尺寸而言非常强大。它还会根据机械负载来消耗功率。因此，轻负载伺服器不会消耗太多能量。
+下图显示了伺服电机的内部结构。您可以看到控制电路、电机、一组齿轮和外壳。您还可以看到连接到外界的 3 根电线。一根用于电源（&#43;5 伏），一根用于接地，白线是控制线。">
+  <meta itemprop="wordCount" content="171">
+
+<title>Arduino 伺服电机 | Xavier的文档站</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E4%BC%BA%E6%9C%8D%E7%94%B5%E6%9C%BA/">
+<link rel="stylesheet" href="/book.min.c13c511b7f1cabadff400eda6fca1d7f995582311b2fc0dbd79f56b33a0ca33e.css" integrity="sha256-wTxRG38cq63/QA7ab8odf5lVgjEbL8Db159WszoMoz4=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/zh-cn.search.min.caffb0452db40746d692bd9e2250be60487ca05f068f826a3066fc6eb65377e1.js" integrity="sha256-yv&#43;wRS20B0bWkr2eIlC&#43;YEh8oF8Gj4JqMGb8brZTd&#43;E=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Xavier的文档站</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/example/" class="">
+      首页</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-43379e8bd6de7b09303dc7295b98e3b4" class="toggle"  />
+    <label for="section-43379e8bd6de7b09303dc7295b98e3b4" class="flex">
+      <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/" class="">
+        Git-Hugo站点搭建</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/GitHub/" class="">
+      GitHub</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/GitHub%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" class="">
+      GitHub操作流程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/Hugo/" class="">
+      Hugo</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/Markdown/" class="">
+      Markdown</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4e1eba7599919e1cf0575873dda6a93b" class="toggle"  />
+    <label for="section-4e1eba7599919e1cf0575873dda6a93b" class="flex">
+      <a role="button" class="">
+        硬件开发</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-11117843b7d604f84fc745873344d025" class="toggle"  />
+    <label for="section-11117843b7d604f84fc745873344d025" class="flex">
+      <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/" class="">
+        Arduino</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d54016606210290a29c27e35d63791b" class="toggle"  />
+    <label for="section-7d54016606210290a29c27e35d63791b" class="flex">
+      <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/" class="">
+        网页示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="toggle"  />
+    <label for="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="flex">
+      <a role="button" class="">
+        网页折叠示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/" class="">
+      3rd Level</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/4th-level/" class="">
+      4th Level</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/5th-level/" class="">
+      5th Level</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E5%86%99%E4%BD%9C%E6%A8%A1%E7%89%88/" class="">
+      这是一个模版</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2cf273eceb77c186c5037e7dfdec429b" class="toggle" checked />
+    <label for="section-2cf273eceb77c186c5037e7dfdec429b" class="flex">
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/" class="">
+        Arduino</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e9b9df62a6b31c481f3397b76f684ac4" class="toggle"  />
+    <label for="section-e9b9df62a6b31c481f3397b76f684ac4" class="flex">
+      <a role="button" class="">
+        Arduino 教程</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%A6%82%E8%BF%B0/" class="">
+      Arduino 概述</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E8%B7%AF%E6%9D%BF%E8%AF%B4%E6%98%8E/" class="">
+      Arduino 电路板说明</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="">
+      Arduino 开发环境配置</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" class="">
+      Arduino 程序结构</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0/" class="">
+      Arduino函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/" class="">
+      Arduino变量和常量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="">
+      Arduino字符串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E8%B1%A1/" class="">
+      Arduino字符串对象</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%BE%AA%E7%8E%AF/" class="">
+      Arduino循环</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" class="">
+      Arduino控制语句</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="">
+      Arduino数据类型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E7%BB%84/" class="">
+      Arduino数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%97%B6%E9%97%B4/" class="">
+      Arduino时间</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E8%BF%90%E7%AE%97%E7%AC%A6/" class="">
+      Arduino运算符</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-746f3e448e3753f91409b45c167b5f3c" class="toggle"  />
+    <label for="section-746f3e448e3753f91409b45c167b5f3c" class="flex">
+      <a role="button" class="">
+        Arduino 函数库</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino-IO%E5%87%BD%E6%95%B0/" class="">
+      Arduino I/O函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E9%AB%98%E7%BA%A7IO%E5%87%BD%E6%95%B0/" class="">
+      Arduino 高级I/O函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0/" class="">
+      Arduino 字符函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E6%95%B0%E5%AD%A6%E5%BA%93/" class="">
+      Arduino 数学库</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/" class="">
+      Arduino 三角函数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1505bf7fe71578613d9fdfeefbf0a6ed" class="toggle"  />
+    <label for="section-1505bf7fe71578613d9fdfeefbf0a6ed" class="flex">
+      <a role="button" class="">
+        Arduino 高级</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-Due-Zero/" class="">
+      Arduino Due &amp; Zero</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E4%B8%AD%E6%96%AD/" class="">
+      Arduino 中断</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E4%B8%B2%E8%A1%8C%E5%A4%96%E8%AE%BE%E6%8E%A5%E5%8F%A3/" class="">
+      Arduino 串行外设接口</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E5%86%85%E9%83%A8%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF/" class="">
+      Arduino 内部集成电路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E8%84%89%E5%86%B2%E5%AE%BD%E5%BA%A6%E8%B0%83%E5%88%B6/" class="">
+      Arduino 脉冲宽度调制</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="">
+      Arduino 随机数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f75ef732436cb7d5a31e8878bc4c2eae" class="toggle"  />
+    <label for="section-f75ef732436cb7d5a31e8878bc4c2eae" class="flex">
+      <a role="button" class="">
+        Arduino 项目</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-LED-%E6%9D%A1%E5%BD%A2%E5%9B%BE/" class="">
+      Arduino Led 条形图</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E6%B8%90%E5%8F%98-LED/" class="">
+      Arduino 渐变 Led</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E8%AF%BB%E5%8F%96%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%8E%8B/" class="">
+      Arduino 读取模拟电压</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E4%B8%B2%E8%A1%8C/" class="">
+      Arduino 键盘串行</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E6%B3%A8%E9%94%80/" class="">
+      Arduino 键盘注销</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E6%B6%88%E6%81%AF/" class="">
+      Arduino 键盘消息</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%97%AA%E7%83%81%E7%9A%84-LED/" class="">
+      Arduino 闪烁的 Led</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%BC%A0%E6%A0%87%E6%8C%89%E9%92%AE%E6%8E%A7%E5%88%B6/" class="">
+      Arduino 鼠标按钮控制</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c8c442dc7c6d3d2a655cab5369840e44" class="toggle"  />
+    <label for="section-c8c442dc7c6d3d2a655cab5369840e44" class="flex">
+      <a role="button" class="">
+        Arduino 传感器</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-PIR-%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino Pir 传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B0%B4%E6%A3%80%E6%B5%8B%E5%99%A8%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 水检测器传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 温度传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 湿度传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E8%B6%85%E5%A3%B0%E6%B3%A2%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 超声波传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E8%BF%9E%E6%8E%A5%E5%BC%80%E5%85%B3/" class="">
+      Arduino 连接开关</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-16c9070ad063dd9b24260556c82fcb3d" class="toggle" checked />
+    <label for="section-16c9070ad063dd9b24260556c82fcb3d" class="flex">
+      <a role="button" class="">
+        Arduino 电机控制</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E4%BC%BA%E6%9C%8D%E7%94%B5%E6%9C%BA/" class="active">
+      Arduino 伺服电机</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 步进电机</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 直流电机</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2af01ba791de5d4ba6dc53f7099efd2a" class="toggle"  />
+    <label for="section-2af01ba791de5d4ba6dc53f7099efd2a" class="flex">
+      <a role="button" class="">
+        Arduino 声音</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 无线通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 网络通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E9%9F%B3%E8%B0%83%E5%BA%93/" class="">
+      Arduino 音调库</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5641606bac6c8d83b454df42ec42af2b" class="toggle"  />
+    <label for="section-5641606bac6c8d83b454df42ec42af2b" class="flex">
+      <a role="button" class="">
+        Arduino 有用资源</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a>
+      短代码</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/buttons/" class="">
+      Buttons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/columns/" class="">
+      Columns</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/details/" class="">
+      Details</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-885e6c1d8e625b7d893953c6f9f88c3e" class="toggle"  />
+    <label for="section-885e6c1d8e625b7d893953c6f9f88c3e" class="flex">
+      <a role="button" class="">
+        Experimental</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/asciinema/" class="">
+      Asciinema</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/badges/" class="">
+      Badges</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/cards/" class="">
+      Cards</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/images/" class="">
+      Images</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/hints/" class="">
+      Hints</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/mermaid/" class="">
+      Mermaid</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/steps/" class="">
+      Steps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/tabs/" class="">
+      Tabs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/katex/" class="">
+      KaTeX</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+<ul><li><a href="/posts/" title="Blog">Blog</a></li></ul>
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino 伺服电机</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#arduino---伺服电机">Arduino - 伺服电机</a></li>
+        <li><a href="#伺服电机的工作原理">伺服电机的工作原理</a></li>
+        <li><a href="#如何传达伺服器应转动的角度">如何传达伺服器应转动的角度？</a></li>
+        <li><a href="#所需组件">所需组件</a></li>
+        <li><a href="#步骤">步骤</a></li>
+        <li><a href="#草图">草图</a></li>
+        <li><a href="#arduino-代码">Arduino 代码</a></li>
+        <li><a href="#需要注意的代码">需要注意的代码</a></li>
+        <li><a href="#连接电位器">连接电位器</a></li>
+        <li><a href="#结果">结果</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><hr>
+<h2 id="arduino---伺服电机">Arduino - 伺服电机<a class="anchor" href="#arduino---%e4%bc%ba%e6%9c%8d%e7%94%b5%e6%9c%ba">#</a></h2>
+<p>更新于 2024/6/19 19:01:29</p>
+<p>伺服电机是一种带有输出轴的小型设备。通过向伺服电机发送编码信号，可以将此轴定位到特定的角度位置。只要输入线上存在编码信号，伺服电机就会保持轴的角度位置。如果编码信号发生变化，轴的角度位置也会发生变化。实际上，伺服电机用于无线电遥控飞机，以定位升降舵和方向舵等控制面。它们还用于无线电遥控汽车、木偶，当然还有机器人。</p>
+<p>
+
+<img 
+  src="https://www.w3ccoo.com/arduino/images/servo_motor.jpg" 
+  alt="伺服电机" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<p>伺服电机在机器人技术中非常有用。电机体积小，具有内置控制电路，并且相对于其尺寸而言非常强大。标准伺服电机（例如 Futaba S-148）具有 42 盎司/英寸的扭矩，相对于其尺寸而言非常强大。它还会根据机械负载来消耗功率。因此，轻负载伺服器不会消耗太多能量。</p>
+<p>下图显示了伺服电机的内部结构。您可以看到控制电路、电机、一组齿轮和外壳。您还可以看到连接到外界的 3 根电线。一根用于电源（+5 伏），一根用于接地，白线是控制线。</p>
+<p>
+
+<img 
+  src="https://www.w3ccoo.com/arduino/images/servo_motor_control_circuitry.jpg" 
+  alt="伺服电机控制电路" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<h2 id="伺服电机的工作原理">伺服电机的工作原理<a class="anchor" href="#%e4%bc%ba%e6%9c%8d%e7%94%b5%e6%9c%ba%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86">#</a></h2>
+<p>伺服电机有一些控制电路和一个连接到输出轴的电位器（可变电阻器，又名电位器）。在上图中，可以在电路板的右侧看到电位器。该电位器允许控制电路监控伺服电机的当前角度。</p>
+<p>如果轴的角度正确，则电机关闭。如果电路发现角度不正确，它将转动电机，直到达到所需角度。伺服的输出轴能够转动大约 180 度。通常，它在 210 度范围内，但是，这取决于制造商。普通伺服用于控制 0 到 180 度的角运动。由于主输出齿轮上装有机械挡块，因此它在机械上无法转动得更远。</p>
+<p>施加到电机的功率与其需要移动的距离成正比。因此，如果轴需要转动较大的距离，电机将全速运转。如果只需要转动少量，电机将以较慢的速度运转。这称为<strong>比例控制</strong>。</p>
+<h2 id="如何传达伺服器应转动的角度">如何传达伺服器应转动的角度？<a class="anchor" href="#%e5%a6%82%e4%bd%95%e4%bc%a0%e8%be%be%e4%bc%ba%e6%9c%8d%e5%99%a8%e5%ba%94%e8%bd%ac%e5%8a%a8%e7%9a%84%e8%a7%92%e5%ba%a6">#</a></h2>
+<p>控制线用于传达角度。角度由施加到控制线上的脉冲持续时间决定。这称为<strong>脉冲编码调制</strong>。伺服器预计每 20 毫秒（0.02 秒）会看到一个脉冲。脉冲的长度将决定电机转动的距离。例如，1.5 毫秒的脉冲将使电机转到 90 度位置（通常称为中性位置）。如果脉冲短于 1.5 毫秒，则电机将使轴更接近 0 度。如果脉冲时间超过 1.5 毫秒，轴的转动角度接近 180 度。</p>
+<p>
+
+<img 
+  src="https://www.w3ccoo.com/arduino/images/angle_turn.jpg" 
+  alt="Angle Turn" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<h2 id="所需组件">所需组件<a class="anchor" href="#%e6%89%80%e9%9c%80%e7%bb%84%e4%bb%b6">#</a></h2>
+<p>您将需要以下组件 −</p>
+<h2 id="步骤">步骤<a class="anchor" href="#%e6%ad%a5%e9%aa%a4">#</a></h2>
+<p>按照电路图进行连接，如下图所示。</p>
+<p>
+
+<img 
+  src="https://www.w3ccoo.com/arduino/images/servo_motor_connections.jpg" 
+  alt="伺服电机连接" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<h2 id="草图">草图<a class="anchor" href="#%e8%8d%89%e5%9b%be">#</a></h2>
+<p>在您的计算机上打开 Arduino IDE 软件。使用 Arduino 语言编码将控制您的电路。单击新建打开一个新的草图文件。</p>
+<p>
+
+<img 
+  src="https://www.w3ccoo.com/arduino/images/sketch.jpg" 
+  alt="草图" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<h2 id="arduino-代码">Arduino 代码<a class="anchor" href="#arduino-%e4%bb%a3%e7%a0%81">#</a></h2>
+<pre tabindex="0"><code>/* 使用电位器（可变电阻）控制伺服位置 */
+
+#include &lt;Servo.h&gt;
+Servo myservo; // 创建伺服对象来控制伺服
+int potpin = 0; // 用于连接电位计的模拟引脚
+int val; // 用于从模拟引脚读取值的变量
+
+void setup() {
+    myservo.attach(9); // 将引脚 9 上的伺服连接到伺服对象
+}
+
+void loop() {
+    val = analogRead(potpin);
+    // 读取电位计的值（值介于 0 和 1023 之间）
+    val = map(val, 0, 1023, 0, 180);
+    // 缩放以与伺服一起使用（值介于 0 和 180 之间）
+    myservo.write(val); // 根据缩放值设置伺服位置
+    delay(15);
+}</code></pre><h2 id="需要注意的代码">需要注意的代码<a class="anchor" href="#%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e7%9a%84%e4%bb%a3%e7%a0%81">#</a></h2>
+<p>伺服电机有三个端子 - 电源、接地和信号。电源线通常为红色，应连接到 Arduino 上的 5V 引脚。接地线通常为黑色或棕色，应连接到 ULN2003 IC (10 -16) 的一个端子。为了保护您的 Arduino 板免受损坏，您需要一些驱动器 IC 来实现这一点。这里我们使用 ULN2003 IC 来驱动伺服电机。信号引脚通常为黄色或橙色，应连接到 Arduino 引脚编号 9。</p>
+<h2 id="连接电位器">连接电位器<a class="anchor" href="#%e8%bf%9e%e6%8e%a5%e7%94%b5%e4%bd%8d%e5%99%a8">#</a></h2>
+<p>分压器/分压器是串联电路中的电阻器，可将输出电压缩放为所施加输入电压的特定比率。以下是电路图 −</p>
+<p>
+
+<img 
+  src="https://www.w3ccoo.com/arduino/images/connecting_potentiometer.jpg" 
+  alt="连接电位器" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<p>$$V_{out} = (V_{in} imes R_{2})/ (R_{1} + R_{2})$$</p>
+<p>Vout 是输出电位，取决于施加的输入电压 (Vin) 和串联电阻 (R1 和 R2)。这意味着流过 R1 的电流也将流过 R2，而无需分流。在上面的等式中，随着 R2 值的变化，Vout 会根据输入电压 Vin 相应地缩放。</p>
+<p>通常，电位器是一种分压器，它可以根据可变电阻的值缩放电路的输出电压，该值使用旋钮缩放。它有三个引脚：GND、信号和 +5V，如下图所示 −</p>
+<p>
+
+<img 
+  src="https://www.w3ccoo.com/arduino/images/potentiometer_with_description.jpg" 
+  alt="带说明的电位器" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<h2 id="结果">结果<a class="anchor" href="#%e7%bb%93%e6%9e%9c">#</a></h2>
+<p>通过改变电位器的 NOP 位置，伺服电机将改变其角度。</p>
+<hr>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E8%BF%9E%E6%8E%A5%E5%BC%80%E5%85%B3/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Arduino 连接开关</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA/" class="flex align-center">
+        <span>Arduino 步进电机</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+  <div class="book-copyright flex justify-center">
+    <small>Xavier的文档站 - © 2026 Xavier 版权所有</small>
+  </div>
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#arduino---伺服电机">Arduino - 伺服电机</a></li>
+        <li><a href="#伺服电机的工作原理">伺服电机的工作原理</a></li>
+        <li><a href="#如何传达伺服器应转动的角度">如何传达伺服器应转动的角度？</a></li>
+        <li><a href="#所需组件">所需组件</a></li>
+        <li><a href="#步骤">步骤</a></li>
+        <li><a href="#草图">草图</a></li>
+        <li><a href="#arduino-代码">Arduino 代码</a></li>
+        <li><a href="#需要注意的代码">需要注意的代码</a></li>
+        <li><a href="#连接电位器">连接电位器</a></li>
+        <li><a href="#结果">结果</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

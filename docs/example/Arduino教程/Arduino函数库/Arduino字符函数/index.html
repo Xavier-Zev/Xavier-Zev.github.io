@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Arduino - 字符函数# 所有数据都以字符形式输入计算机，包括字母、数字和各种特殊符号。在本节中，我们将讨论 C&#43;&#43; 检查和处理单个字符的功能。
+字符处理库包含几个函数，它们对字符数据执行有用的测试和处理。每个函数接收一个字符（表示为 int）或 EOF 作为参数。字符通常作为整数进行处理。
+请记住，EOF 通常具有值 -1，并且某些硬件架构不允许将负值存储在 char 变量中。因此，字符处理函数将字符作为整数进行处理。
+下表总结了字符处理库的函数。使用字符处理库中的函数时，请包含 标头。
+S.No. 原型 &amp;描述 1 int isdigit( int c ) 如果 c 是数字，则返回 1，否则返回 0。
+| | 2 |
+int isalpha( int c )
+如果 c 是字母，则返回 1，否则返回 0。
+| | 3 |
+int isalnum( int c )
+如果 c 是数字或字母，否则返回 0。
+| | 4 |
+int isxdigit( int c )
+如果 c 是十六进制数字字符，则返回 1，否则返回 0。
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0/">
+  <meta property="og:site_name" content="Xavier的文档站">
+  <meta property="og:title" content="Arduino 字符函数">
+  <meta property="og:description" content="Arduino - 字符函数# 所有数据都以字符形式输入计算机，包括字母、数字和各种特殊符号。在本节中，我们将讨论 C&#43;&#43; 检查和处理单个字符的功能。
+字符处理库包含几个函数，它们对字符数据执行有用的测试和处理。每个函数接收一个字符（表示为 int）或 EOF 作为参数。字符通常作为整数进行处理。
+请记住，EOF 通常具有值 -1，并且某些硬件架构不允许将负值存储在 char 变量中。因此，字符处理函数将字符作为整数进行处理。
+下表总结了字符处理库的函数。使用字符处理库中的函数时，请包含 标头。
+S.No. 原型 &amp;描述 1 int isdigit( int c ) 如果 c 是数字，则返回 1，否则返回 0。
+| | 2 |
+int isalpha( int c )
+如果 c 是字母，则返回 1，否则返回 0。
+| | 3 |
+int isalnum( int c )
+如果 c 是数字或字母，否则返回 0。
+| | 4 |
+int isxdigit( int c )
+如果 c 是十六进制数字字符，则返回 1，否则返回 0。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="Arduino 字符函数">
+  <meta itemprop="description" content="Arduino - 字符函数# 所有数据都以字符形式输入计算机，包括字母、数字和各种特殊符号。在本节中，我们将讨论 C&#43;&#43; 检查和处理单个字符的功能。
+字符处理库包含几个函数，它们对字符数据执行有用的测试和处理。每个函数接收一个字符（表示为 int）或 EOF 作为参数。字符通常作为整数进行处理。
+请记住，EOF 通常具有值 -1，并且某些硬件架构不允许将负值存储在 char 变量中。因此，字符处理函数将字符作为整数进行处理。
+下表总结了字符处理库的函数。使用字符处理库中的函数时，请包含 标头。
+S.No. 原型 &amp;描述 1 int isdigit( int c ) 如果 c 是数字，则返回 1，否则返回 0。
+| | 2 |
+int isalpha( int c )
+如果 c 是字母，则返回 1，否则返回 0。
+| | 3 |
+int isalnum( int c )
+如果 c 是数字或字母，否则返回 0。
+| | 4 |
+int isxdigit( int c )
+如果 c 是十六进制数字字符，则返回 1，否则返回 0。">
+  <meta itemprop="wordCount" content="1259">
+
+<title>Arduino 字符函数 | Xavier的文档站</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0/">
+<link rel="stylesheet" href="/book.min.c13c511b7f1cabadff400eda6fca1d7f995582311b2fc0dbd79f56b33a0ca33e.css" integrity="sha256-wTxRG38cq63/QA7ab8odf5lVgjEbL8Db159WszoMoz4=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/zh-cn.search.min.caffb0452db40746d692bd9e2250be60487ca05f068f826a3066fc6eb65377e1.js" integrity="sha256-yv&#43;wRS20B0bWkr2eIlC&#43;YEh8oF8Gj4JqMGb8brZTd&#43;E=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Xavier的文档站</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/example/" class="">
+      首页</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-43379e8bd6de7b09303dc7295b98e3b4" class="toggle"  />
+    <label for="section-43379e8bd6de7b09303dc7295b98e3b4" class="flex">
+      <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/" class="">
+        Git-Hugo站点搭建</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/GitHub/" class="">
+      GitHub</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/GitHub%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" class="">
+      GitHub操作流程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/Hugo/" class="">
+      Hugo</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Git-Hugo%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/Markdown/" class="">
+      Markdown</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4e1eba7599919e1cf0575873dda6a93b" class="toggle"  />
+    <label for="section-4e1eba7599919e1cf0575873dda6a93b" class="flex">
+      <a role="button" class="">
+        硬件开发</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-11117843b7d604f84fc745873344d025" class="toggle"  />
+    <label for="section-11117843b7d604f84fc745873344d025" class="flex">
+      <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/" class="">
+        Arduino</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/Arduino/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7d54016606210290a29c27e35d63791b" class="toggle"  />
+    <label for="section-7d54016606210290a29c27e35d63791b" class="flex">
+      <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/" class="">
+        网页示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/with-toc/" class="">
+      With ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/without-toc/" class="">
+      Without ToC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="toggle"  />
+    <label for="section-1b5e4ad6c9a2761b631a8003f035f8c4" class="flex">
+      <a role="button" class="">
+        网页折叠示例</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/" class="">
+      3rd Level</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/4th-level/" class="">
+      4th Level</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E7%BD%91%E9%A1%B5%E7%A4%BA%E4%BE%8B/%E7%BD%91%E9%A1%B5%E6%8A%98%E5%8F%A0%E7%A4%BA%E4%BE%8B/3rd-level/5th-level/" class="">
+      5th Level</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/%E5%86%99%E4%BD%9C%E6%A8%A1%E7%89%88/" class="">
+      这是一个模版</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2cf273eceb77c186c5037e7dfdec429b" class="toggle" checked />
+    <label for="section-2cf273eceb77c186c5037e7dfdec429b" class="flex">
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/" class="">
+        Arduino</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e9b9df62a6b31c481f3397b76f684ac4" class="toggle"  />
+    <label for="section-e9b9df62a6b31c481f3397b76f684ac4" class="flex">
+      <a role="button" class="">
+        Arduino 教程</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%A6%82%E8%BF%B0/" class="">
+      Arduino 概述</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E8%B7%AF%E6%9D%BF%E8%AF%B4%E6%98%8E/" class="">
+      Arduino 电路板说明</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="">
+      Arduino 开发环境配置</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" class="">
+      Arduino 程序结构</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0/" class="">
+      Arduino函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/" class="">
+      Arduino变量和常量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="">
+      Arduino字符串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E8%B1%A1/" class="">
+      Arduino字符串对象</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%BE%AA%E7%8E%AF/" class="">
+      Arduino循环</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" class="">
+      Arduino控制语句</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="">
+      Arduino数据类型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E7%BB%84/" class="">
+      Arduino数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%97%B6%E9%97%B4/" class="">
+      Arduino时间</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E8%BF%90%E7%AE%97%E7%AC%A6/" class="">
+      Arduino运算符</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-746f3e448e3753f91409b45c167b5f3c" class="toggle" checked />
+    <label for="section-746f3e448e3753f91409b45c167b5f3c" class="flex">
+      <a role="button" class="">
+        Arduino 函数库</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino-IO%E5%87%BD%E6%95%B0/" class="">
+      Arduino I/O函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E9%AB%98%E7%BA%A7IO%E5%87%BD%E6%95%B0/" class="">
+      Arduino 高级I/O函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0/" class="active">
+      Arduino 字符函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E6%95%B0%E5%AD%A6%E5%BA%93/" class="">
+      Arduino 数学库</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/" class="">
+      Arduino 三角函数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1505bf7fe71578613d9fdfeefbf0a6ed" class="toggle"  />
+    <label for="section-1505bf7fe71578613d9fdfeefbf0a6ed" class="flex">
+      <a role="button" class="">
+        Arduino 高级</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-Due-Zero/" class="">
+      Arduino Due &amp; Zero</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E4%B8%AD%E6%96%AD/" class="">
+      Arduino 中断</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E4%B8%B2%E8%A1%8C%E5%A4%96%E8%AE%BE%E6%8E%A5%E5%8F%A3/" class="">
+      Arduino 串行外设接口</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E5%86%85%E9%83%A8%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF/" class="">
+      Arduino 内部集成电路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E8%84%89%E5%86%B2%E5%AE%BD%E5%BA%A6%E8%B0%83%E5%88%B6/" class="">
+      Arduino 脉冲宽度调制</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%AB%98%E7%BA%A7/Arduino-%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="">
+      Arduino 随机数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f75ef732436cb7d5a31e8878bc4c2eae" class="toggle"  />
+    <label for="section-f75ef732436cb7d5a31e8878bc4c2eae" class="flex">
+      <a role="button" class="">
+        Arduino 项目</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-LED-%E6%9D%A1%E5%BD%A2%E5%9B%BE/" class="">
+      Arduino Led 条形图</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E6%B8%90%E5%8F%98-LED/" class="">
+      Arduino 渐变 Led</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E8%AF%BB%E5%8F%96%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%8E%8B/" class="">
+      Arduino 读取模拟电压</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E4%B8%B2%E8%A1%8C/" class="">
+      Arduino 键盘串行</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E6%B3%A8%E9%94%80/" class="">
+      Arduino 键盘注销</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%94%AE%E7%9B%98%E6%B6%88%E6%81%AF/" class="">
+      Arduino 键盘消息</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%97%AA%E7%83%81%E7%9A%84-LED/" class="">
+      Arduino 闪烁的 Led</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E9%A1%B9%E7%9B%AE/Arduino-%E9%BC%A0%E6%A0%87%E6%8C%89%E9%92%AE%E6%8E%A7%E5%88%B6/" class="">
+      Arduino 鼠标按钮控制</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c8c442dc7c6d3d2a655cab5369840e44" class="toggle"  />
+    <label for="section-c8c442dc7c6d3d2a655cab5369840e44" class="flex">
+      <a role="button" class="">
+        Arduino 传感器</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-PIR-%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino Pir 传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B0%B4%E6%A3%80%E6%B5%8B%E5%99%A8%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 水检测器传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 温度传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 湿度传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E8%B6%85%E5%A3%B0%E6%B3%A2%E4%BC%A0%E6%84%9F%E5%99%A8/" class="">
+      Arduino 超声波传感器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E4%BC%A0%E6%84%9F%E5%99%A8/Arduino-%E8%BF%9E%E6%8E%A5%E5%BC%80%E5%85%B3/" class="">
+      Arduino 连接开关</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-16c9070ad063dd9b24260556c82fcb3d" class="toggle"  />
+    <label for="section-16c9070ad063dd9b24260556c82fcb3d" class="flex">
+      <a role="button" class="">
+        Arduino 电机控制</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E4%BC%BA%E6%9C%8D%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 伺服电机</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 步进电机</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/Arduino-%E7%9B%B4%E6%B5%81%E7%94%B5%E6%9C%BA/" class="">
+      Arduino 直流电机</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2af01ba791de5d4ba6dc53f7099efd2a" class="toggle"  />
+    <label for="section-2af01ba791de5d4ba6dc53f7099efd2a" class="flex">
+      <a role="button" class="">
+        Arduino 声音</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 无线通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="">
+      Arduino 网络通信</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%A3%B0%E9%9F%B3/Arduino-%E9%9F%B3%E8%B0%83%E5%BA%93/" class="">
+      Arduino 音调库</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5641606bac6c8d83b454df42ec42af2b" class="toggle"  />
+    <label for="section-5641606bac6c8d83b454df42ec42af2b" class="flex">
+      <a role="button" class="">
+        Arduino 有用资源</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a>
+      短代码</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/buttons/" class="">
+      Buttons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/columns/" class="">
+      Columns</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/details/" class="">
+      Details</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-885e6c1d8e625b7d893953c6f9f88c3e" class="toggle"  />
+    <label for="section-885e6c1d8e625b7d893953c6f9f88c3e" class="flex">
+      <a role="button" class="">
+        Experimental</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/asciinema/" class="">
+      Asciinema</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/badges/" class="">
+      Badges</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/cards/" class="">
+      Cards</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/experimental/images/" class="">
+      Images</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/hints/" class="">
+      Hints</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/mermaid/" class="">
+      Mermaid</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/steps/" class="">
+      Steps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/tabs/" class="">
+      Tabs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/shortcodes/katex/" class="">
+      KaTeX</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+<ul><li><a href="/posts/" title="Blog">Blog</a></li></ul>
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino 字符函数</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#arduino---字符函数">Arduino - 字符函数</a></li>
+        <li><a href="#示例">示例</a>
+          <ul>
+            <li><a href="#示例-1">示例 1</a></li>
+            <li><a href="#结果">结果</a></li>
+            <li><a href="#示例-2">示例 2</a></li>
+            <li><a href="#结果-1">结果</a></li>
+            <li><a href="#示例-3">示例 3</a></li>
+            <li><a href="#结果-2">结果</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="arduino---字符函数">Arduino - 字符函数<a class="anchor" href="#arduino---%e5%ad%97%e7%ac%a6%e5%87%bd%e6%95%b0">#</a></h2>
+<p>所有数据都以字符形式输入计算机，包括字母、数字和各种特殊符号。在本节中，我们将讨论 C++ 检查和处理单个字符的功能。</p>
+<p>字符处理库包含几个函数，它们对字符数据执行有用的测试和处理。每个函数接收一个字符（表示为 int）或 EOF 作为参数。字符通常作为整数进行处理。</p>
+<p>请记住，EOF 通常具有值 -1，并且某些硬件架构不允许将负值存储在 char 变量中。因此，字符处理函数将字符作为整数进行处理。</p>
+<p>下表总结了字符处理库的函数。使用字符处理库中的函数时，请包含 <strong><cctype></strong> 标头。</p>
+<table>
+  <thead>
+      <tr>
+          <th>S.No.</th>
+          <th>原型 &amp;描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>int isdigit( int c )</strong></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>如果 c 是数字，则返回 1，否则返回 0。</p>
+<p>|
+| 2 |</p>
+<p><strong>int isalpha( int c )</strong></p>
+<p>如果 c 是字母，则返回 1，否则返回 0。</p>
+<p>|
+| 3 |</p>
+<p><strong>int isalnum( int c )</strong></p>
+<p>如果 c 是数字或字母，否则返回 0。</p>
+<p>|
+| 4 |</p>
+<p><strong>int isxdigit( int c )</strong></p>
+<p>如果 c 是十六进制数字字符，则返回 1，否则返回 0。</p>
+<p>（有关二进制、八进制、十进制和十六进制数的详细说明，请参阅附录 D&quot;数字系统&quot;。）</p>
+<p>|
+| 5 |</p>
+<p><strong>int islower( int c )</strong></p>
+<p>如果 c 是小写字母，则返回 1，否则返回 0。</p>
+<p>|
+| 6 |</p>
+<p><strong>int isupper( int c )</strong></p>
+<p>如果 c 是大写字母，则返回 1；否则返回 0。</p>
+<p>|
+| 7 |</p>
+<p><strong>int isspace( int c )</strong></p>
+<p>如果 c 是空白字符（换行符 (&rsquo; &lsquo;)、空格</p>
+<p>(&rsquo; &lsquo;)、换页符 (&rsquo;\f&rsquo;)、回车符 (&rsquo; &lsquo;)、水平制表符 (&rsquo; &lsquo;) 或垂直制表符 (&rsquo;\v&rsquo;)），则返回 1，否则返回 0。</p>
+<p>|
+| 8 |</p>
+<p><strong>int iscntrl( int c )</strong></p>
+<p>如果 c 是控制字符，例如换行符 (&rsquo; &lsquo;)、换页符 (&rsquo;\f&rsquo;)、回车符 (&rsquo; &lsquo;)、水平制表符 (&rsquo; &lsquo;)、垂直制表符 (&rsquo;\v&rsquo;)、警告符 (&rsquo;\a&rsquo;) 或退格符 (&rsquo;\b&rsquo;)，则返回 1，否则返回 0。</p>
+<p>|
+| 9 |</p>
+<p><strong>int ispunct( int c )</strong></p>
+<p>如果 c 是除空格、数字或字母以外的打印字符，则返回 1，否则返回 0。</p>
+<p>|
+| 10 |</p>
+<p><strong>int isprint( int c )</strong></p>
+<p>如果 c 是包括空格 (&rsquo; &lsquo;) 的打印字符，则返回 1，否则返回 0。</p>
+<p>|
+| 11 |</p>
+<p><strong>int isgraph( int c )</strong></p>
+<p>如果 c 是除空格 (&rsquo; &lsquo;) 以外的打印字符，则返回 1，否则返回 0。</p>
+<p>|</p>
+<h2 id="示例">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b">#</a></h2>
+<p>以下示例演示了函数 <strong>isdigit、isalpha、isalnum</strong> 和 <strong>isxdigit</strong> 的用法。函数 <strong>isdigit</strong> 确定其参数是否为数字 (0–9)。函数 <strong>isalpha</strong> 确定其参数是大写字母 (A-Z) 还是小写字母 (a–z)。函数 <strong>isalnum</strong> 确定其参数是大写字母、小写字母还是数字。函数 <strong>isxdigit</strong> 确定其参数是否为十六进制数字 (A–F， a–f，0–9）。</p>
+<h3 id="示例-1">示例 1<a class="anchor" href="#%e7%a4%ba%e4%be%8b-1">#</a></h3>
+<pre tabindex="0"><code>void setup () {
+   Serial.begin (9600);
+   Serial.print (&#34;According to isdigit:
+&#34;);
+   Serial.print (isdigit( &#39;8&#39; ) ? &#34;8 is a&#34;: &#34;8 is not a&#34;);
+   Serial.print (&#34; digit
+&#34; );
+   Serial.print (isdigit( &#39;8&#39; ) ?&#34;# is a&#34;: &#34;# is not a&#34;) ;
+   Serial.print (&#34; digit
+&#34;);
+   Serial.print (&#34;
+According to isalpha:
+&#34; );
+   Serial.print (isalpha(&#39;A&#39; ) ?&#34;A is a&#34;: &#34;A is not a&#34;);
+   Serial.print (&#34; letter
+&#34;);
+   Serial.print (isalpha(&#39;A&#39; ) ?&#34;b is a&#34;: &#34;b is not a&#34;);
+   Serial.print (&#34; letter
+&#34;);
+   Serial.print (isalpha(&#39;A&#39;) ?&#34;&amp; is a&#34;: &#34;&amp; is not a&#34;);
+   Serial.print (&#34; letter
+&#34;);
+   Serial.print (isalpha( &#39;A&#39; ) ?&#34;4 is a&#34;:&#34;4 is not a&#34;);
+   Serial.print (&#34; letter
+&#34;);
+   Serial.print (&#34;
+According to isalnum:
+&#34;);
+   Serial.print (isalnum( &#39;A&#39; ) ?&#34;A is a&#34; : &#34;A is not a&#34; );
+
+   Serial.print (&#34; digit or a letter
+&#34; );
+   Serial.print (isalnum( &#39;8&#39; ) ?&#34;8 is a&#34; : &#34;8 is not a&#34; ) ;
+   Serial.print (&#34; digit or a letter
+&#34;);
+   Serial.print (isalnum( &#39;#&#39; ) ?&#34;# is a&#34; : &#34;# is not a&#34; );
+   Serial.print (&#34; digit or a letter
+&#34;);
+   Serial.print (&#34;
+According to isxdigit:
+&#34;);
+   Serial.print (isxdigit( &#39;F&#39; ) ?&#34;F is a&#34; : &#34;F is not a&#34; );
+   Serial.print (&#34; hexadecimal digit
+&#34; );
+   Serial.print (isxdigit( &#39;J&#39; ) ?&#34;J is a&#34; : &#34;J is not a&#34; ) ;
+   Serial.print (&#34; hexadecimal digit
+&#34; );
+   Serial.print (isxdigit( &#39;7&#39; ) ?&#34;7 is a&#34; : &#34;7 is not a&#34; ) ;
+
+   Serial.print (&#34; hexadecimal digit
+&#34; );
+   Serial.print (isxdigit( &#39;$&#39; ) ? &#34;$ is a&#34; : &#34;$ is not a&#34; );
+   Serial.print (&#34; hexadecimal digit
+&#34; );
+   Serial.print (isxdigit( &#39;f&#39; ) ? “f is a&#34; : &#34;f is not a&#34;);
+   
+}
+
+void loop () {
+
+}</code></pre><h3 id="结果">结果<a class="anchor" href="#%e7%bb%93%e6%9e%9c">#</a></h3>
+<pre tabindex="0"><code>According to isdigit:
+8 is a digit
+# is not a digit
+According to isalpha:
+A is a letter
+b is a letter
+&amp; is not a letter
+4 is not a letter
+According to isalnum:
+A is a digit or a letter
+
+8 is a digit or a letter
+# is not a digit or a letter
+According to isxdigit:
+F is a hexadecimal digit
+J is not a hexadecimal digit
+7 is a hexadecimal digit
+
+$ is not a hexadecimal digit
+f is a hexadecimal digit</code></pre><p>我们在每个函数中使用条件运算符 <strong>(?:)</strong> 来确定对于每个测试字符，输出中应打印字符串&quot;is a&quot;还是&quot;is not a&quot;。例如，行 <strong>a</strong> 表示如果 &lsquo;8&rsquo; 是数字（即，如果 <strong>isdigit</strong> 返回真（非零）值），则打印字符串&quot;8 is a&quot;。如果 &lsquo;8&rsquo; 不是数字（即，如果 <strong>isdigit</strong> 返回 0），则打印字符串&quot;8 is not a&quot;。</p>
+<h3 id="示例-2">示例 2<a class="anchor" href="#%e7%a4%ba%e4%be%8b-2">#</a></h3>
+<p>以下示例演示了函数 <strong>islower</strong> 和 <strong>isupper</strong> 的使用。函数 <strong>islower</strong> 确定其参数是否为小写字母 (a–z)。函数 <strong>isupper</strong> 确定其参数是否为大写字母 (A–Z)。</p>
+<pre tabindex="0"><code>int thisChar = 0xA0;
+
+void setup () {
+   Serial.begin (9600);
+   Serial.print (&#34;According to islower:
+&#34;) ;
+   Serial.print (islower( &#39;p&#39; ) ? &#34;p is a&#34; : &#34;p is not a&#34; );
+   Serial.print ( &#34; lowercase letter
+&#34; );
+   Serial.print ( islower( &#39;P&#39;) ? &#34;P is a&#34; : &#34;P is not a&#34;) ;
+   Serial.print (&#34;lowercase letter
+&#34;);
+   Serial.print (islower( &#39;5&#39; ) ? &#34;5 is a&#34; : &#34;5 is not a&#34; );
+   Serial.print ( &#34; lowercase letter
+&#34; );
+   Serial.print ( islower( &#39;!&#39; )? &#34;! is a&#34; : &#34;! is not a&#34;) ;
+   Serial.print (&#34;lowercase letter
+&#34;);
+
+   Serial.print (&#34;
+According to isupper:
+&#34;) ;
+   Serial.print (isupper ( &#39;D&#39; ) ? &#34;D is a&#34; : &#34;D is not an&#34; );
+   Serial.print ( &#34; uppercase letter
+&#34; );
+   Serial.print ( isupper ( &#39;d&#39; )? &#34;d is a&#34; : &#34;d is not an&#34;) ;
+   Serial.print ( &#34; uppercase letter
+&#34; );
+   Serial.print (isupper ( &#39;8&#39; ) ? &#34;8 is a&#34; : &#34;8 is not an&#34; );
+   Serial.print ( &#34; uppercase letter
+&#34; );
+   Serial.print ( islower( &#39;$&#39; )? &#34;$ is a&#34; : &#34;$ is not an&#34;) ;
+   Serial.print (&#34;uppercase letter
+ &#34;);
+}
+
+void setup () {
+
+}</code></pre><h3 id="结果-1">结果<a class="anchor" href="#%e7%bb%93%e6%9e%9c-1">#</a></h3>
+<pre tabindex="0"><code>According to islower:
+p is a lowercase letter
+P is not a lowercase letter
+5 is not a lowercase letter
+! is not a lowercase letter
+
+According to isupper:
+D is an uppercase letter
+d is not an uppercase letter
+8 is not an uppercase letter
+$ is not an uppercase letter</code></pre><h3 id="示例-3">示例 3<a class="anchor" href="#%e7%a4%ba%e4%be%8b-3">#</a></h3>
+<p>以下示例演示了函数 <strong>isspace、iscntrl、ispunct、isprint</strong> 和 <strong>isgraph</strong> 的使用。</p>
+<pre tabindex="0"><code>void setup () {
+   Serial.begin (9600);
+   Serial.print ( &#34; According to isspace:
+Newline &#34;) ;
+   Serial.print (isspace( &#39;
+&#39; )? &#34; is a&#34; : &#34; is not a&#34; );
+   Serial.print ( &#34; whitespace character
+Horizontal tab&#34;) ;
+   Serial.print (isspace( &#39;	&#39; )? &#34; is a&#34; : &#34; is not a&#34; );
+   Serial.print ( &#34; whitespace character
+&#34;) ;
+   Serial.print (isspace(&#39;%&#39;)? &#34; % is a&#34; : &#34; % is not a&#34; );
+   
+   Serial.print ( &#34; 
+According to iscntrl:
+Newline&#34;) ;
+   Serial.print ( iscntrl( &#39;
+&#39; )?&#34;is a&#34; : &#34; is not a&#34; ) ;
+   Serial.print (&#34; control character
+&#34;);
+   Serial.print (iscntrl( &#39;$&#39; ) ? &#34; $ is a&#34; : &#34; $ is not a&#34; );
+   Serial.print (&#34; control character
+&#34;);
+   Serial.print (&#34;
+According to ispunct:
+&#34;);
+   Serial.print (ispunct(&#39;;&#39; ) ?&#34;; is a&#34; : &#34;; is not a&#34; ) ;
+   Serial.print (&#34; punctuation character
+&#34;);
+   Serial.print (ispunct(&#39;Y&#39; ) ?&#34;Y is a&#34; : &#34;Y is not a&#34; ) ;
+   Serial.print (&#34;punctuation character
+&#34;);
+   Serial.print (ispunct(&#39;#&#39; ) ?&#34;# is a&#34; : &#34;# is not a&#34; ) ;
+   Serial.print (&#34;punctuation character
+&#34;);
+
+   Serial.print ( &#34;
+ According to isprint:
+&#34;);
+   Serial.print (isprint(&#39;$&#39; ) ?&#34;$ is a&#34; : &#34;$ is not a&#34; );
+   Serial.print (&#34; printing character
+Alert &#34;);
+   Serial.print (isprint(&#39;\a&#39; ) ?&#34; is a&#34; : &#34; is not a&#34; );
+   Serial.print (&#34; printing character
+Space &#34;);
+   Serial.print (isprint(&#39; &#39; ) ?&#34; is a&#34; : &#34; is not a&#34; );
+   Serial.print (&#34; printing character
+&#34;);
+   
+   Serial.print (&#34;
+ According to isgraph:
+&#34;);
+   Serial.print (isgraph (&#39;Q&#39; ) ?&#34;Q is a&#34; : &#34;Q is not a&#34; );
+   Serial.print (&#34;printing character other than a space
+Space &#34;);
+   Serial.print (isgraph (&#39; &#39;) ?&#34; is a&#34; : &#34; is not a&#34; );
+   Serial.print (&#34;printing character other than a space &#34;);
+}
+
+void loop () {
+
+}</code></pre><h3 id="结果-2">结果<a class="anchor" href="#%e7%bb%93%e6%9e%9c-2">#</a></h3>
+<pre tabindex="0"><code>According to isspace:
+Newline is a whitespace character
+Horizontal tab is a whitespace character
+% is not a whitespace character
+According to iscntrl:
+Newline is a control character
+$ is not a control character
+According to ispunct:
+; is a punctuation character
+Y is not a punctuation character
+# is a punctuation character
+According to isprint:
+$ is a printing character
+Alert is not a printing character
+Space is a printing character
+According to isgraph:
+Q is a printing character other than a space
+Space is not a printing character other than a space</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E9%AB%98%E7%BA%A7IO%E5%87%BD%E6%95%B0/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Arduino 高级I/O函数</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0%E5%BA%93/Arduino%E6%95%B0%E5%AD%A6%E5%BA%93/" class="flex align-center">
+        <span>Arduino 数学库</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+  <div class="book-copyright flex justify-center">
+    <small>Xavier的文档站 - © 2026 Xavier 版权所有</small>
+  </div>
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#arduino---字符函数">Arduino - 字符函数</a></li>
+        <li><a href="#示例">示例</a>
+          <ul>
+            <li><a href="#示例-1">示例 1</a></li>
+            <li><a href="#结果">结果</a></li>
+            <li><a href="#示例-2">示例 2</a></li>
+            <li><a href="#结果-1">结果</a></li>
+            <li><a href="#示例-3">示例 3</a></li>
+            <li><a href="#结果-2">结果</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
