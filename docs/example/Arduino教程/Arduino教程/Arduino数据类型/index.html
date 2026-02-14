@@ -8,41 +8,39 @@ https://github.com/alex-shpak/hugo-book
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Arduino - 数据类型# C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。
-下表提供了您在 Arduino 编程期间将使用的所有数据类型。
-voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdoublearrayString-char 数组String-对象 void# void 关键字仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。
-示例# Void Loop ( ) { // 其余代码 }布尔值# 布尔值包含两个值之一，即 true 或 false。每个布尔变量占用一个字节的内存。
-示例# boolean val = false ; // 声明布尔类型的变量并用 false 初始化 boolean state = true ; // 声明布尔类型的变量并用 true 初始化Char# 一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：‘A’，对于多个字符，字符串使用双引号：“ABC”。
+<meta name="description" content="Arduino - 数据类型# C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。下表提供了您在 Arduino 编程期间将使用的所有数据类型。
+所有数据类型
+Void Boolean Char Unsigned Char Byte Int Unsigned Int Word Long Unsigned Long Shrot Float Double Array String-char 数组 String-对象 具体类型# Void# 仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。
+Void Loop ( ) { // 其余代码 } Char# Step3-启动电路板# Step4-启动 Arduino IDE# Step5-打开第一个项目# Step6-选择 Arduino 电路板# Step7-选择串行端口# Step8-将程序上传到主板# 布尔值# 布尔值包含两个值之一，即 true 或 false。每个布尔变量占用一个字节的内存。
+示例# boolean val = false ; // 声明布尔类型的变量并用 false 初始化 boolean state = true ; // 声明布尔类型的变量并用 true 初始化一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：‘A’，对于多个字符，字符串使用双引号：“ABC”。
 但是，字符存储为数字。您可以在 ASCII 图表 中查看具体编码。这意味着可以对字符进行算术运算，其中使用字符的 ASCII 值。例如，‘A’ &#43; 1 的值为 66，因为大写字母 A 的 ASCII 值为 65。
-示例# Char chr_a = &#39;a&#39; ;//声明 char 类型的变量并用字符 a 初始化它 Char chr_c = 97 ;//声明 char 类型的变量并用字符 97 初始化它 ">
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
   <meta property="og:site_name" content="Xavier的文档站">
-  <meta property="og:title" content="Xavier的文档站">
-  <meta property="og:description" content="Arduino - 数据类型# C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。
-下表提供了您在 Arduino 编程期间将使用的所有数据类型。
-voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdoublearrayString-char 数组String-对象 void# void 关键字仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。
-示例# Void Loop ( ) { // 其余代码 }布尔值# 布尔值包含两个值之一，即 true 或 false。每个布尔变量占用一个字节的内存。
-示例# boolean val = false ; // 声明布尔类型的变量并用 false 初始化 boolean state = true ; // 声明布尔类型的变量并用 true 初始化Char# 一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：‘A’，对于多个字符，字符串使用双引号：“ABC”。
-但是，字符存储为数字。您可以在 ASCII 图表 中查看具体编码。这意味着可以对字符进行算术运算，其中使用字符的 ASCII 值。例如，‘A’ &#43; 1 的值为 66，因为大写字母 A 的 ASCII 值为 65。
-示例# Char chr_a = &#39;a&#39; ;//声明 char 类型的变量并用字符 a 初始化它 Char chr_c = 97 ;//声明 char 类型的变量并用字符 97 初始化它">
+  <meta property="og:title" content="Arduino 数据类型">
+  <meta property="og:description" content="Arduino - 数据类型# C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。下表提供了您在 Arduino 编程期间将使用的所有数据类型。
+所有数据类型
+Void Boolean Char Unsigned Char Byte Int Unsigned Int Word Long Unsigned Long Shrot Float Double Array String-char 数组 String-对象 具体类型# Void# 仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。
+Void Loop ( ) { // 其余代码 } Char# Step3-启动电路板# Step4-启动 Arduino IDE# Step5-打开第一个项目# Step6-选择 Arduino 电路板# Step7-选择串行端口# Step8-将程序上传到主板# 布尔值# 布尔值包含两个值之一，即 true 或 false。每个布尔变量占用一个字节的内存。
+示例# boolean val = false ; // 声明布尔类型的变量并用 false 初始化 boolean state = true ; // 声明布尔类型的变量并用 true 初始化一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：‘A’，对于多个字符，字符串使用双引号：“ABC”。
+但是，字符存储为数字。您可以在 ASCII 图表 中查看具体编码。这意味着可以对字符进行算术运算，其中使用字符的 ASCII 值。例如，‘A’ &#43; 1 的值为 66，因为大写字母 A 的 ASCII 值为 65。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
 
 
-  <meta itemprop="name" content="Xavier的文档站">
-  <meta itemprop="description" content="Arduino - 数据类型# C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。
-下表提供了您在 Arduino 编程期间将使用的所有数据类型。
-voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdoublearrayString-char 数组String-对象 void# void 关键字仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。
-示例# Void Loop ( ) { // 其余代码 }布尔值# 布尔值包含两个值之一，即 true 或 false。每个布尔变量占用一个字节的内存。
-示例# boolean val = false ; // 声明布尔类型的变量并用 false 初始化 boolean state = true ; // 声明布尔类型的变量并用 true 初始化Char# 一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：‘A’，对于多个字符，字符串使用双引号：“ABC”。
-但是，字符存储为数字。您可以在 ASCII 图表 中查看具体编码。这意味着可以对字符进行算术运算，其中使用字符的 ASCII 值。例如，‘A’ &#43; 1 的值为 66，因为大写字母 A 的 ASCII 值为 65。
-示例# Char chr_a = &#39;a&#39; ;//声明 char 类型的变量并用字符 a 初始化它 Char chr_c = 97 ;//声明 char 类型的变量并用字符 97 初始化它">
-  <meta itemprop="wordCount" content="338">
+  <meta itemprop="name" content="Arduino 数据类型">
+  <meta itemprop="description" content="Arduino - 数据类型# C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。下表提供了您在 Arduino 编程期间将使用的所有数据类型。
+所有数据类型
+Void Boolean Char Unsigned Char Byte Int Unsigned Int Word Long Unsigned Long Shrot Float Double Array String-char 数组 String-对象 具体类型# Void# 仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。
+Void Loop ( ) { // 其余代码 } Char# Step3-启动电路板# Step4-启动 Arduino IDE# Step5-打开第一个项目# Step6-选择 Arduino 电路板# Step7-选择串行端口# Step8-将程序上传到主板# 布尔值# 布尔值包含两个值之一，即 true 或 false。每个布尔变量占用一个字节的内存。
+示例# boolean val = false ; // 声明布尔类型的变量并用 false 初始化 boolean state = true ; // 声明布尔类型的变量并用 true 初始化一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：‘A’，对于多个字符，字符串使用双引号：“ABC”。
+但是，字符存储为数字。您可以在 ASCII 图表 中查看具体编码。这意味着可以对字符进行算术运算，其中使用字符的 ASCII 值。例如，‘A’ &#43; 1 的值为 66，因为大写字母 A 的 ASCII 值为 65。">
+  <meta itemprop="wordCount" content="344">
 
-<title>Arduino数据类型 | Xavier的文档站</title>
+<title>Arduino 数据类型 | Xavier的文档站</title>
 <link rel="icon" href="/favicon.png" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
@@ -50,7 +48,7 @@ voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdo
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/zh-cn.search.min.caffb0452db40746d692bd9e2250be60487ca05f068f826a3066fc6eb65377e1.js" integrity="sha256-yv&#43;wRS20B0bWkr2eIlC&#43;YEh8oF8Gj4JqMGb8brZTd&#43;E=" crossorigin="anonymous"></script>
+  <script defer src="/zh-cn.search.min.b75a556547158269b6b24a1223021cba9b4e963450dffd02fea57b2229e59ac8.js" integrity="sha256-t1pVZUcVgmm2skoSIwIcuptOljRQ3/0C/qV7Iinlmsg=" crossorigin="anonymous"></script>
 
 
 
@@ -502,6 +500,20 @@ voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdo
   
 
   
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="active">
+      Arduino 数据类型</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0/" class="">
       Arduino函数</a>
   
@@ -574,20 +586,6 @@ voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdo
   
     <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" class="">
       Arduino控制语句</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="active">
-      Arduino数据类型</a>
   
 
         </li>
@@ -1249,6 +1247,99 @@ voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdo
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d4363109ec03029241be37b99307d2fd" class="toggle"  />
+    <label for="section-d4363109ec03029241be37b99307d2fd" class="flex">
+      <a role="button" class="">
+        Arduino 实践篇</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="">
+      Arduino 环境配置</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/Hello-World/" class="">
+      Hello World</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E6%B5%81%E6%B0%B4%E7%81%AF/" class="">
+      流水灯</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E6%8C%89%E9%92%AE%E6%8E%A7%E5%88%B6LED/" class="">
+      按钮控制LED</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E5%91%BC%E5%90%B8%E7%81%AF/" class="">
+      呼吸灯</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -1506,7 +1597,7 @@ voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdo
     <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <h3>Arduino数据类型</h3>
+  <h3>Arduino 数据类型</h3>
 
   <label for="toc-control">
     
@@ -1522,72 +1613,73 @@ voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdo
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#arduino---数据类型"><strong>Arduino - 数据类型</strong></a>
       <ul>
-        <li><a href="#arduino---数据类型">Arduino - 数据类型</a></li>
-        <li><a href="#void">void</a>
+        <li><a href="#具体类型">具体类型</a>
           <ul>
-            <li><a href="#示例">示例</a></li>
+            <li><a href="#void"><strong>Void</strong></a></li>
+            <li><a href="#char"><strong>Char</strong></a></li>
+            <li><a href="#step3-启动电路板"><strong>Step3-启动电路板</strong></a></li>
+            <li><a href="#step4-启动-arduino-ide"><strong>Step4-启动 Arduino IDE</strong></a></li>
+            <li><a href="#step5-打开第一个项目"><strong>Step5-打开第一个项目</strong></a></li>
+            <li><a href="#step6-选择-arduino-电路板"><strong>Step6-选择 Arduino 电路板</strong></a></li>
+            <li><a href="#step7-选择串行端口"><strong>Step7-选择串行端口</strong></a></li>
+            <li><a href="#step8-将程序上传到主板"><strong>Step8-将程序上传到主板</strong></a></li>
           </ul>
         </li>
         <li><a href="#布尔值">布尔值</a>
           <ul>
-            <li><a href="#示例-1">示例</a></li>
-          </ul>
-        </li>
-        <li><a href="#char">Char</a>
-          <ul>
-            <li><a href="#示例-2">示例</a></li>
+            <li><a href="#示例">示例</a></li>
           </ul>
         </li>
         <li><a href="#无符号字符">无符号字符</a>
           <ul>
-            <li><a href="#示例-3">示例</a></li>
+            <li><a href="#示例-1">示例</a></li>
           </ul>
         </li>
         <li><a href="#byte">byte</a>
           <ul>
-            <li><a href="#示例-4">示例</a></li>
+            <li><a href="#示例-2">示例</a></li>
           </ul>
         </li>
         <li><a href="#int">int</a>
           <ul>
-            <li><a href="#示例-5">示例</a></li>
+            <li><a href="#示例-3">示例</a></li>
           </ul>
         </li>
         <li><a href="#无符号-int">无符号 int</a>
           <ul>
-            <li><a href="#示例-6">示例</a></li>
+            <li><a href="#示例-4">示例</a></li>
           </ul>
         </li>
         <li><a href="#字">字</a>
           <ul>
-            <li><a href="#示例-7">示例</a></li>
+            <li><a href="#示例-5">示例</a></li>
           </ul>
         </li>
         <li><a href="#long">Long</a>
           <ul>
-            <li><a href="#示例-8">示例</a></li>
+            <li><a href="#示例-6">示例</a></li>
           </ul>
         </li>
         <li><a href="#unsigned-long">unsigned long</a>
           <ul>
-            <li><a href="#示例-9">示例</a></li>
+            <li><a href="#示例-7">示例</a></li>
           </ul>
         </li>
         <li><a href="#short">short</a>
           <ul>
-            <li><a href="#示例-10">示例</a></li>
+            <li><a href="#示例-8">示例</a></li>
           </ul>
         </li>
         <li><a href="#float">float</a>
           <ul>
-            <li><a href="#示例-11">示例</a></li>
+            <li><a href="#示例-9">示例</a></li>
           </ul>
         </li>
         <li><a href="#double">double</a>
           <ul>
-            <li><a href="#示例-12">示例</a></li>
+            <li><a href="#示例-10">示例</a></li>
           </ul>
         </li>
       </ul>
@@ -1604,76 +1696,107 @@ voidBooleancharUnsigned charbyteintUnsigned intwordlongUnsigned longshortfloatdo
 
       
       
-  <article class="markdown book-article"><h2 id="arduino---数据类型">Arduino - 数据类型<a class="anchor" href="#arduino---%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">#</a></h2>
-<p>C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。</p>
-<p>下表提供了您在 Arduino 编程期间将使用的所有数据类型。</p>
-<table class="w3-table-all notranslate"><tbody><tr><td>void</td><td>Boolean</td><td>char</td><td>Unsigned char</td><td>byte</td><td>int</td><td>Unsigned int</td><td>word</td></tr><tr><td>long</td><td>Unsigned long</td><td>short</td><td>float</td><td>double</td><td>array</td><td>String-char 数组</td><td>String-对象</td></tr></tbody></table>
-<h2 id="void">void<a class="anchor" href="#void">#</a></h2>
-<p>void 关键字仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。</p>
-<h3 id="示例">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b">#</a></h3>
-<pre tabindex="0"><code>Void Loop ( ) {
-	// 其余代码
-}</code></pre><h2 id="布尔值">布尔值<a class="anchor" href="#%e5%b8%83%e5%b0%94%e5%80%bc">#</a></h2>
+  <article class="markdown book-article"><h1 id="arduino---数据类型"><strong>Arduino - 数据类型</strong><a class="anchor" href="#arduino---%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">#</a></h1>
+<p>C 中的数据类型是指用于声明不同类型的变量或函数的广泛系统。变量的类型决定了它在存储中占用多少空间以及如何解释存储的位模式。下表提供了您在 Arduino 编程期间将使用的所有数据类型。</p>
+<p><strong><center>所有数据类型</center></strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Void</th>
+          <th style="text-align: center">Boolean</th>
+          <th style="text-align: center">Char</th>
+          <th style="text-align: center">Unsigned Char</th>
+          <th style="text-align: center">Byte</th>
+          <th style="text-align: center">Int</th>
+          <th style="text-align: center">Unsigned Int</th>
+          <th style="text-align: center">Word</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">Long</td>
+          <td style="text-align: center">Unsigned Long</td>
+          <td style="text-align: center">Shrot</td>
+          <td style="text-align: center">Float</td>
+          <td style="text-align: center">Double</td>
+          <td style="text-align: center">Array</td>
+          <td style="text-align: center">String-char 数组</td>
+          <td style="text-align: center">String-对象</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="具体类型">具体类型<a class="anchor" href="#%e5%85%b7%e4%bd%93%e7%b1%bb%e5%9e%8b">#</a></h2>
+<div class="book-steps">
+<ol>
+<li>
+<h3 id="void"><strong>Void</strong><a class="anchor" href="#void">#</a></h3>
+<p>仅用于函数声明。它表示函数不应向调用它的函数返回任何信息。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Void <span style="color:#6639ba">Loop</span> <span style="color:#1f2328">(</span> <span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#57606a">// 其余代码
+</span></span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span></span></span></code></pre></div></li>
+<li>
+<h3 id="char"><strong>Char</strong><a class="anchor" href="#char">#</a></h3>
+</li>
+<li>
+<h3 id="step3-启动电路板"><strong>Step3-启动电路板</strong><a class="anchor" href="#step3-%e5%90%af%e5%8a%a8%e7%94%b5%e8%b7%af%e6%9d%bf">#</a></h3>
+</li>
+<li>
+<h3 id="step4-启动-arduino-ide"><strong>Step4-启动 Arduino IDE</strong><a class="anchor" href="#step4-%e5%90%af%e5%8a%a8-arduino-ide">#</a></h3>
+</li>
+<li>
+<h3 id="step5-打开第一个项目"><strong>Step5-打开第一个项目</strong><a class="anchor" href="#step5-%e6%89%93%e5%bc%80%e7%ac%ac%e4%b8%80%e4%b8%aa%e9%a1%b9%e7%9b%ae">#</a></h3>
+</li>
+<li>
+<h3 id="step6-选择-arduino-电路板"><strong>Step6-选择 Arduino 电路板</strong><a class="anchor" href="#step6-%e9%80%89%e6%8b%a9-arduino-%e7%94%b5%e8%b7%af%e6%9d%bf">#</a></h3>
+</li>
+<li>
+<h3 id="step7-选择串行端口"><strong>Step7-选择串行端口</strong><a class="anchor" href="#step7-%e9%80%89%e6%8b%a9%e4%b8%b2%e8%a1%8c%e7%ab%af%e5%8f%a3">#</a></h3>
+</li>
+<li>
+<h3 id="step8-将程序上传到主板"><strong>Step8-将程序上传到主板</strong><a class="anchor" href="#step8-%e5%b0%86%e7%a8%8b%e5%ba%8f%e4%b8%8a%e4%bc%a0%e5%88%b0%e4%b8%bb%e6%9d%bf">#</a></h3>
+</div>
+</li>
+</ol>
+<h2 id="布尔值">布尔值<a class="anchor" href="#%e5%b8%83%e5%b0%94%e5%80%bc">#</a></h2>
 <p>布尔值包含两个值之一，即 true 或 false。每个布尔变量占用一个字节的内存。</p>
-<h3 id="示例-1">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-1">#</a></h3>
+<h3 id="示例">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b">#</a></h3>
 <pre tabindex="0"><code>boolean val = false ; // 声明布尔类型的变量并用 false 初始化
-boolean state = true ; // 声明布尔类型的变量并用 true 初始化</code></pre><h2 id="char">Char<a class="anchor" href="#char">#</a></h2>
-<p>一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：&lsquo;A&rsquo;，对于多个字符，字符串使用双引号：&ldquo;ABC&rdquo;。</p>
+boolean state = true ; // 声明布尔类型的变量并用 true 初始化</code></pre><p>一种占用一个字节内存的数据类型，用于存储字符值。字符文字用单引号书写，例如：&lsquo;A&rsquo;，对于多个字符，字符串使用双引号：&ldquo;ABC&rdquo;。</p>
 <p>但是，字符存储为数字。您可以在 <a href="https://www.arduino.cc/en/Reference/ASCIIchart">ASCII 图表</a> 中查看具体编码。这意味着可以对字符进行算术运算，其中使用字符的 ASCII 值。例如，&lsquo;A&rsquo; + 1 的值为 66，因为大写字母 A 的 ASCII 值为 65。</p>
-<h3 id="示例-2">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-2">#</a></h3>
-<pre tabindex="0"><code>Char chr_a = &#39;a&#39; ;//声明 char 类型的变量并用字符 a 初始化它
-Char chr_c = 97 ;//声明 char 类型的变量并用字符 97 初始化它</code></pre><p>
-
-<img 
-  src="https://www.w3ccoo.com/arduino/images/ascii_char_table.jpg" 
-  alt="ASCII 字符表" 
-  
-  style="
-    display: block; 
-    margin: 0 auto;        /* 居中 */
-    max-width: 80%;        /* 最大宽度 */
-    height: auto;          /* 保持宽高比 */
-    border-radius: 8px;    /* 圆角 */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
-    margin-top: 16px;      /* 上边距 */
-    margin-bottom: 16px;   /* 下边距 */
-    border: 1px solid #eee;/* 边框 */
-  "
-/></p>
 <h2 id="无符号字符">无符号字符<a class="anchor" href="#%e6%97%a0%e7%ac%a6%e5%8f%b7%e5%ad%97%e7%ac%a6">#</a></h2>
 <p><strong>无符号字符</strong> 是一种无符号数据类型，占用一个字节的内存。无符号字符数据类型对 0 到 255 之间的数字进行编码。</p>
-<h3 id="示例-3">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-3">#</a></h3>
+<h3 id="示例-1">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-1">#</a></h3>
 <pre tabindex="0"><code>无符号字符 chr_y = 121 ; // 声明类型为 Unsigned char 的变量并用字符 y 初始化它</code></pre><h2 id="byte">byte<a class="anchor" href="#byte">#</a></h2>
 <p>一个字节存储一个 8 位无符号数，从 0 到 255。</p>
-<h3 id="示例-4">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-4">#</a></h3>
+<h3 id="示例-2">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-2">#</a></h3>
 <pre tabindex="0"><code>byte m = 25 ;//声明类型为 byte 的变量并用 25 初始化它</code></pre><h2 id="int">int<a class="anchor" href="#int">#</a></h2>
 <p>整数是数字存储的主要数据类型。int 存储 16 位（2 字节）值。这会产生 -32,768 到 32,767 的范围（最小值为 -2^15，最大值为 (2^15) - 1）。</p>
 <p><strong>int</strong> 的大小因电路板而异。例如，在 Arduino Due 上，<strong>int</strong> 存储 32 位（4 字节）值。这会产生 -2,147,483,648 到 2,147,483,647 的范围（最小值为 -2^31，最大值为 (2^31) - 1）。</p>
-<h3 id="示例-5">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-5">#</a></h3>
+<h3 id="示例-3">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-3">#</a></h3>
 <pre tabindex="0"><code>int counter = 32 ;// 声明 int 类型的变量并用 32 初始化它</code></pre><h2 id="无符号-int">无符号 int<a class="anchor" href="#%e6%97%a0%e7%ac%a6%e5%8f%b7-int">#</a></h2>
 <p>无符号 int（无符号整数）与 int 相同，因为它们存储 2 字节值。但是，它们不存储负数，而是仅存储正值，产生的有用范围是 0 到 65,535（2^16）- 1）。 Due 存储一个 4 字节（32 位）值，范围从 0 到 4,294,967,295（2^32 - 1）。</p>
-<h3 id="示例-6">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-6">#</a></h3>
+<h3 id="示例-4">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-4">#</a></h3>
 <pre tabindex="0"><code>Unsigned int counter = 60 ; // 用
 类型 unsigned int 声明变量并用 60 初始化它</code></pre><h2 id="字">字<a class="anchor" href="#%e5%ad%97">#</a></h2>
 <p>在 Uno 和其他基于 ATMEGA 的主板上，一个字存储一个 16 位无符号数。在 Due 和 Zero 上，它存储一个 32 位无符号数。</p>
-<h3 id="示例-7">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-7">#</a></h3>
+<h3 id="示例-5">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-5">#</a></h3>
 <pre tabindex="0"><code>word w = 1000 ;//声明类型为 word 的变量并用 1000 初始化它</code></pre><h2 id="long">Long<a class="anchor" href="#long">#</a></h2>
 <p>Long 变量是用于数字存储的扩展大小变量，存储 32 位（4 个字节），从 -2,147,483,648 到 2,147,483,647。</p>
-<h3 id="示例-8">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-8">#</a></h3>
+<h3 id="示例-6">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-6">#</a></h3>
 <pre tabindex="0"><code>Long velocity = 102346 ;//声明类型为 Long 的变量并用 102346 初始化它</code></pre><h2 id="unsigned-long">unsigned long<a class="anchor" href="#unsigned-long">#</a></h2>
 <p>Unsigned long 变量是用于数字存储的扩展大小变量，存储 32 位（4 个字节）。与标准 long 不同，无符号 long 不会存储负数，因此它们的范围为 0 到 4,294,967,295 (2^32 - 1)。</p>
-<h3 id="示例-9">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-9">#</a></h3>
+<h3 id="示例-7">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-7">#</a></h3>
 <pre tabindex="0"><code>Unsigned Long velocity = 101006 ;// 声明变量为
 类型 Unsigned Long 并用 101006 初始化它</code></pre><h2 id="short">short<a class="anchor" href="#short">#</a></h2>
 <p>short 是 16 位数据类型。在所有 Arduino（基于 ATMega 和 ARM）上，short 存储 16 位（2 字节）值。这会产生一个范围为 -32,768 到 32,767（最小值为 -2^15，最大值为 (2^15) - 1）。</p>
-<h3 id="示例-10">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-10">#</a></h3>
+<h3 id="示例-8">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-8">#</a></h3>
 <pre tabindex="0"><code>short val = 13 ;//声明类型为 short 的变量并用 13 初始化它</code></pre><h2 id="float">float<a class="anchor" href="#float">#</a></h2>
 <p>浮点数的数据类型是带有小数点的数字。浮点数通常用于近似模拟值和连续值，因为它们比整数具有更高的分辨率。</p>
 <p>浮点数可以最大为 3.4028235E+38，最小为 -3.4028235E+38。它们存储为 32 位（4 字节）的信息。</p>
-<h3 id="示例-11">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-11">#</a></h3>
+<h3 id="示例-9">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-9">#</a></h3>
 <pre tabindex="0"><code>float num = 1.352;//声明类型为 float 的变量并用 1.352 初始化它</code></pre><h2 id="double">double<a class="anchor" href="#double">#</a></h2>
 <p>在 Uno 和其他基于 ATMEGA 的主板上，双精度浮点数占用四个字节。也就是说，double 的实现与 float 完全相同，精度没有提高。在 Arduino Due 上，double 具有 8 字节（64 位）精度。</p>
-<h3 id="示例-12">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-12">#</a></h3>
+<h3 id="示例-10">示例<a class="anchor" href="#%e7%a4%ba%e4%be%8b-10">#</a></h3>
 <pre tabindex="0"><code>double num = 45.352 ;//声明类型为 double 的变量并用 45.352 初始化它</code></pre></article>
  
       
@@ -1702,16 +1825,16 @@ Char chr_c = 97 ;//声明 char 类型的变量并用字符 97 初始化它</code
   <div class="flex flex-wrap justify-between">
     <span>
     
-      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" class="flex align-center">
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/" class="flex align-center">
         <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
-        <span>Arduino控制语句</span>
+        <span>Arduino 程序结构</span>
       </a>
     
     </span>
     <span>
     
-      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%B0%E7%BB%84/" class="flex align-center">
-        <span>Arduino数组</span>
+      <a href="/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%87%BD%E6%95%B0/" class="flex align-center">
+        <span>Arduino函数</span>
         <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
       </a>
     
@@ -1751,72 +1874,73 @@ Char chr_c = 97 ;//声明 char 类型的变量并用字符 97 初始化它</code
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#arduino---数据类型"><strong>Arduino - 数据类型</strong></a>
       <ul>
-        <li><a href="#arduino---数据类型">Arduino - 数据类型</a></li>
-        <li><a href="#void">void</a>
+        <li><a href="#具体类型">具体类型</a>
           <ul>
-            <li><a href="#示例">示例</a></li>
+            <li><a href="#void"><strong>Void</strong></a></li>
+            <li><a href="#char"><strong>Char</strong></a></li>
+            <li><a href="#step3-启动电路板"><strong>Step3-启动电路板</strong></a></li>
+            <li><a href="#step4-启动-arduino-ide"><strong>Step4-启动 Arduino IDE</strong></a></li>
+            <li><a href="#step5-打开第一个项目"><strong>Step5-打开第一个项目</strong></a></li>
+            <li><a href="#step6-选择-arduino-电路板"><strong>Step6-选择 Arduino 电路板</strong></a></li>
+            <li><a href="#step7-选择串行端口"><strong>Step7-选择串行端口</strong></a></li>
+            <li><a href="#step8-将程序上传到主板"><strong>Step8-将程序上传到主板</strong></a></li>
           </ul>
         </li>
         <li><a href="#布尔值">布尔值</a>
           <ul>
-            <li><a href="#示例-1">示例</a></li>
-          </ul>
-        </li>
-        <li><a href="#char">Char</a>
-          <ul>
-            <li><a href="#示例-2">示例</a></li>
+            <li><a href="#示例">示例</a></li>
           </ul>
         </li>
         <li><a href="#无符号字符">无符号字符</a>
           <ul>
-            <li><a href="#示例-3">示例</a></li>
+            <li><a href="#示例-1">示例</a></li>
           </ul>
         </li>
         <li><a href="#byte">byte</a>
           <ul>
-            <li><a href="#示例-4">示例</a></li>
+            <li><a href="#示例-2">示例</a></li>
           </ul>
         </li>
         <li><a href="#int">int</a>
           <ul>
-            <li><a href="#示例-5">示例</a></li>
+            <li><a href="#示例-3">示例</a></li>
           </ul>
         </li>
         <li><a href="#无符号-int">无符号 int</a>
           <ul>
-            <li><a href="#示例-6">示例</a></li>
+            <li><a href="#示例-4">示例</a></li>
           </ul>
         </li>
         <li><a href="#字">字</a>
           <ul>
-            <li><a href="#示例-7">示例</a></li>
+            <li><a href="#示例-5">示例</a></li>
           </ul>
         </li>
         <li><a href="#long">Long</a>
           <ul>
-            <li><a href="#示例-8">示例</a></li>
+            <li><a href="#示例-6">示例</a></li>
           </ul>
         </li>
         <li><a href="#unsigned-long">unsigned long</a>
           <ul>
-            <li><a href="#示例-9">示例</a></li>
+            <li><a href="#示例-7">示例</a></li>
           </ul>
         </li>
         <li><a href="#short">short</a>
           <ul>
-            <li><a href="#示例-10">示例</a></li>
+            <li><a href="#示例-8">示例</a></li>
           </ul>
         </li>
         <li><a href="#float">float</a>
           <ul>
-            <li><a href="#示例-11">示例</a></li>
+            <li><a href="#示例-9">示例</a></li>
           </ul>
         </li>
         <li><a href="#double">double</a>
           <ul>
-            <li><a href="#示例-12">示例</a></li>
+            <li><a href="#示例-10">示例</a></li>
           </ul>
         </li>
       </ul>
