@@ -12,14 +12,8 @@ https://github.com/alex-shpak/hugo-book
 实验四 呼吸灯# 概述# 现在你已经学会了多种方法控制LED，但单是开关LED未免显得太过单调了，我们可以尝试用analogWrite() 函数输出PWM波，来制作一个带呼吸效果的LED灯。
 实验材料# Arduino UNO、面包板、LED一个、220Ω电阻一个
 连接示意图# 呼吸灯实验连接示意图
-硬件连接图# 硬件连接图
-原理图# 呼吸灯实验原理图
-如图所示，实验中我们将LED连接到了带PWM功能的D9引脚。
-软硬件知识要点# 下载程序到Arduino后，你可以观察到LED亮灭交换渐变，好似呼吸一般的效果。
-以上程序中，通过for循环，逐渐改变LED的亮度，达到显示呼吸的效果。在两个for循环中都有delay(30) 的延时语句，这是为了让我们肉眼能观察到亮度调节的效果。如果没有这个语句，整个变化效果将一闪而过。
-在analogWrite() 和analogRead() 函数内部，已经完成了引脚的初始化，因此不用在Setup() 函数中进行初始化操作。
-程序编写# 你可以在IDE的文件菜单&gt;示例&gt;03.Analog&gt;Fading中找到这段程序：
-/* Fading 通过analogWrite()函数实现LED呼吸灯效果（PWM渐变） */ int ledPin = 9; // LED连接在9号PWM引脚（支持analogWrite） void setup() { // 无需初始化配置，直接进入主循环 } void loop() { // LED从暗到亮渐变（PWM值0~255，步长5） for (int fadeValue = 0; fadeValue &lt;= 255; fadeValue &#43;= 5) { analogWrite(ledPin, fadeValue); // 输出对应占空比的PWM信号 delay(30); // 延时30ms，形成平滑渐变效果 } // LED从亮到暗渐变（PWM值255~0，步长5） for (int fadeValue = 255; fadeValue &gt;= 0; fadeValue -= 5) { analogWrite(ledPin, fadeValue); // 输出对应占空比的PWM信号 delay(30); // 延时30ms，形成平滑渐变效果 } } ">
+原理图# 如图所示，实验中我们将LED连接到了带PWM功能的D9引脚。
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E5%91%BC%E5%90%B8%E7%81%AF/">
@@ -29,14 +23,7 @@ https://github.com/alex-shpak/hugo-book
 实验四 呼吸灯# 概述# 现在你已经学会了多种方法控制LED，但单是开关LED未免显得太过单调了，我们可以尝试用analogWrite() 函数输出PWM波，来制作一个带呼吸效果的LED灯。
 实验材料# Arduino UNO、面包板、LED一个、220Ω电阻一个
 连接示意图# 呼吸灯实验连接示意图
-硬件连接图# 硬件连接图
-原理图# 呼吸灯实验原理图
-如图所示，实验中我们将LED连接到了带PWM功能的D9引脚。
-软硬件知识要点# 下载程序到Arduino后，你可以观察到LED亮灭交换渐变，好似呼吸一般的效果。
-以上程序中，通过for循环，逐渐改变LED的亮度，达到显示呼吸的效果。在两个for循环中都有delay(30) 的延时语句，这是为了让我们肉眼能观察到亮度调节的效果。如果没有这个语句，整个变化效果将一闪而过。
-在analogWrite() 和analogRead() 函数内部，已经完成了引脚的初始化，因此不用在Setup() 函数中进行初始化操作。
-程序编写# 你可以在IDE的文件菜单&gt;示例&gt;03.Analog&gt;Fading中找到这段程序：
-/* Fading 通过analogWrite()函数实现LED呼吸灯效果（PWM渐变） */ int ledPin = 9; // LED连接在9号PWM引脚（支持analogWrite） void setup() { // 无需初始化配置，直接进入主循环 } void loop() { // LED从暗到亮渐变（PWM值0~255，步长5） for (int fadeValue = 0; fadeValue &lt;= 255; fadeValue &#43;= 5) { analogWrite(ledPin, fadeValue); // 输出对应占空比的PWM信号 delay(30); // 延时30ms，形成平滑渐变效果 } // LED从亮到暗渐变（PWM值255~0，步长5） for (int fadeValue = 255; fadeValue &gt;= 0; fadeValue -= 5) { analogWrite(ledPin, fadeValue); // 输出对应占空比的PWM信号 delay(30); // 延时30ms，形成平滑渐变效果 } }">
+原理图# 如图所示，实验中我们将LED连接到了带PWM功能的D9引脚。">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -47,25 +34,18 @@ https://github.com/alex-shpak/hugo-book
 实验四 呼吸灯# 概述# 现在你已经学会了多种方法控制LED，但单是开关LED未免显得太过单调了，我们可以尝试用analogWrite() 函数输出PWM波，来制作一个带呼吸效果的LED灯。
 实验材料# Arduino UNO、面包板、LED一个、220Ω电阻一个
 连接示意图# 呼吸灯实验连接示意图
-硬件连接图# 硬件连接图
-原理图# 呼吸灯实验原理图
-如图所示，实验中我们将LED连接到了带PWM功能的D9引脚。
-软硬件知识要点# 下载程序到Arduino后，你可以观察到LED亮灭交换渐变，好似呼吸一般的效果。
-以上程序中，通过for循环，逐渐改变LED的亮度，达到显示呼吸的效果。在两个for循环中都有delay(30) 的延时语句，这是为了让我们肉眼能观察到亮度调节的效果。如果没有这个语句，整个变化效果将一闪而过。
-在analogWrite() 和analogRead() 函数内部，已经完成了引脚的初始化，因此不用在Setup() 函数中进行初始化操作。
-程序编写# 你可以在IDE的文件菜单&gt;示例&gt;03.Analog&gt;Fading中找到这段程序：
-/* Fading 通过analogWrite()函数实现LED呼吸灯效果（PWM渐变） */ int ledPin = 9; // LED连接在9号PWM引脚（支持analogWrite） void setup() { // 无需初始化配置，直接进入主循环 } void loop() { // LED从暗到亮渐变（PWM值0~255，步长5） for (int fadeValue = 0; fadeValue &lt;= 255; fadeValue &#43;= 5) { analogWrite(ledPin, fadeValue); // 输出对应占空比的PWM信号 delay(30); // 延时30ms，形成平滑渐变效果 } // LED从亮到暗渐变（PWM值255~0，步长5） for (int fadeValue = 255; fadeValue &gt;= 0; fadeValue -= 5) { analogWrite(ledPin, fadeValue); // 输出对应占空比的PWM信号 delay(30); // 延时30ms，形成平滑渐变效果 } }">
-  <meta itemprop="wordCount" content="92">
+原理图# 如图所示，实验中我们将LED连接到了带PWM功能的D9引脚。">
+  <meta itemprop="wordCount" content="90">
 
 <title>呼吸灯 | Xavier的文档站</title>
 <link rel="icon" href="/favicon.png" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E5%91%BC%E5%90%B8%E7%81%AF/">
-<link rel="stylesheet" href="/book.min.c13c511b7f1cabadff400eda6fca1d7f995582311b2fc0dbd79f56b33a0ca33e.css" integrity="sha256-wTxRG38cq63/QA7ab8odf5lVgjEbL8Db159WszoMoz4=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.abad93e41fae5bd8379f0086241e1dfd180c1f9952af0a3212417f6d15547f13.css" integrity="sha256-q62T5B&#43;uW9g3nwCGJB4d/RgMH5lSrwoyEkF/bRVUfxM=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/zh-cn.search.min.b75a556547158269b6b24a1223021cba9b4e963450dffd02fea57b2229e59ac8.js" integrity="sha256-t1pVZUcVgmm2skoSIwIcuptOljRQ3/0C/qV7Iinlmsg=" crossorigin="anonymous"></script>
+  <script defer src="/zh-cn.search.min.3e15ce6f8491ff8148bfbacc2734a964287c50906ad4cf1e083c6b219e2b7dea.js" integrity="sha256-PhXOb4SR/4FIv7rMJzSpZCh8UJBq1M8eCDxrIZ4rfeo=" crossorigin="anonymous"></script>
 
 
 
@@ -1637,7 +1617,6 @@ https://github.com/alex-shpak/hugo-book
             <li><a href="#概述"><strong>概述</strong></a></li>
             <li><a href="#实验材料"><strong>实验材料</strong></a></li>
             <li><a href="#连接示意图"><strong>连接示意图</strong></a></li>
-            <li><a href="#硬件连接图"><strong>硬件连接图</strong></a></li>
             <li><a href="#原理图"><strong>原理图</strong></a></li>
             <li><a href="#软硬件知识要点"><strong>软硬件知识要点</strong></a></li>
             <li><a href="#程序编写"><strong>程序编写</strong></a></li>
@@ -1664,7 +1643,7 @@ https://github.com/alex-shpak/hugo-book
 <ol>
 <li>
 <h3 id="概述"><strong>概述</strong><a class="anchor" href="#%e6%a6%82%e8%bf%b0">#</a></h3>
-<p>现在你已经学会了多种方法控制LED，但单是开关LED未免显得太过单调了，我们可以尝试用analogWrite() 函数输出PWM波，来制作一个带呼吸效果的LED灯。</p>
+<p>现在你已经学会了多种方法控制LED，但单是开关LED未免显得太过单调了，我们可以尝试用<code>analogWrite() </code>函数输出PWM波，来制作一个带呼吸效果的LED灯。</p>
 </li>
 <li>
 <h3 id="实验材料"><strong>实验材料</strong><a class="anchor" href="#%e5%ae%9e%e9%aa%8c%e6%9d%90%e6%96%99">#</a></h3>
@@ -1672,16 +1651,48 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>
 <h3 id="连接示意图"><strong>连接示意图</strong><a class="anchor" href="#%e8%bf%9e%e6%8e%a5%e7%a4%ba%e6%84%8f%e5%9b%be">#</a></h3>
+<p>
+
+<img 
+  src="https://tuchuang-1317271371.cos.ap-shanghai.myqcloud.com/Arduino%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/20260215144451056.png?imageSlim" 
+  alt="" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
 <p><strong><center>呼吸灯实验连接示意图</center></strong></p>
 </li>
 <li>
-<h3 id="硬件连接图"><strong>硬件连接图</strong><a class="anchor" href="#%e7%a1%ac%e4%bb%b6%e8%bf%9e%e6%8e%a5%e5%9b%be">#</a></h3>
-<p><strong><center>硬件连接图</center></strong></p>
-</li>
-<li>
 <h3 id="原理图"><strong>原理图</strong><a class="anchor" href="#%e5%8e%9f%e7%90%86%e5%9b%be">#</a></h3>
-<p><strong><center>呼吸灯实验原理图</center></strong></p>
 <p>如图所示，实验中我们将LED连接到了带PWM功能的D9引脚。</p>
+<p>
+
+<img 
+  src="https://tuchuang-1317271371.cos.ap-shanghai.myqcloud.com/Arduino%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/20260215144513514.png?imageSlim" 
+  alt="" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<p><strong><center>呼吸灯实验原理图</center></strong></p>
 </li>
 <li>
 <h3 id="软硬件知识要点"><strong>软硬件知识要点</strong><a class="anchor" href="#%e8%bd%af%e7%a1%ac%e4%bb%b6%e7%9f%a5%e8%af%86%e8%a6%81%e7%82%b9">#</a></h3>
@@ -1802,7 +1813,6 @@ https://github.com/alex-shpak/hugo-book
             <li><a href="#概述"><strong>概述</strong></a></li>
             <li><a href="#实验材料"><strong>实验材料</strong></a></li>
             <li><a href="#连接示意图"><strong>连接示意图</strong></a></li>
-            <li><a href="#硬件连接图"><strong>硬件连接图</strong></a></li>
             <li><a href="#原理图"><strong>原理图</strong></a></li>
             <li><a href="#软硬件知识要点"><strong>软硬件知识要点</strong></a></li>
             <li><a href="#程序编写"><strong>程序编写</strong></a></li>

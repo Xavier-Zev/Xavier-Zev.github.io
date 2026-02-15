@@ -11,8 +11,8 @@ https://github.com/alex-shpak/hugo-book
 <meta name="description" content="Arduino 实践篇# 写于2026/02/12
 实验二 流水灯# 概述# 在上一章中我们进行了板载LED的实验，对于Arduino的语言与Arduino IDE的使用方法有了一个简单的认识，在这一章中，我们将开始搭建我们的第一个电路，准备好需要的实验器材，让我们开始Arduino的学习之旅吧。
 实验材料# UNO 控制板一块，LED灯6个，220Ω电阻6个，面包板1块，面包板跳线若干。
-连接示意图# 硬件连接图# 硬件知识要点# LED的两个针脚一长一短，其中长的连接的是正极，而短的连接的是GND，其次，在LED与控制板之间，需要添加一个限流电阻，由于LED内阻较小，不添加限流电阻的话有可能会烧坏LED。
-程序编写# // 定义LED引脚范围常量（增强代码可读性和可维护性） const int LED_START_PIN = 2; // LED起始引脚 const int LED_END_PIN = 7; // LED结束引脚 // 板子启动/复位后仅运行一次的初始化函数 void setup() { // 初始化I/O口：将引脚2到7全部设置为输出模式 for (int i = 2; i &lt; 8; i&#43;&#43;) { pinMode(i, OUTPUT); // 每个pinMode调用单独一行，增加代码可读性 } } // 初始化完成后循环执行的主函数 void loop() { // 正向流水：从引脚2到引脚6，逐个点亮LED，亮1秒后熄灭 for (int i = LED_START_PIN; i &lt; 6; i&#43;&#43;) { digitalWrite(i, HIGH); // 点亮当前引脚的LED delay(1000); // 保持点亮状态1秒（1000毫秒） digitalWrite(i, LOW); // 熄灭当前引脚的LED } // 反向流水：从引脚7到引脚3，逐个点亮LED，亮1秒后熄灭 for (int i = LED_END_PIN; i &gt; 2; i--) { digitalWrite(i, HIGH); // 点亮当前引脚的LED delay(1000); // 保持点亮状态1秒（1000毫秒） digitalWrite(i, LOW); // 熄灭当前引脚的LED } } ">
+连接示意图# 流水灯实验连接示意图
+硬件连接图# ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E6%B5%81%E6%B0%B4%E7%81%AF/">
@@ -21,8 +21,8 @@ https://github.com/alex-shpak/hugo-book
   <meta property="og:description" content="Arduino 实践篇# 写于2026/02/12
 实验二 流水灯# 概述# 在上一章中我们进行了板载LED的实验，对于Arduino的语言与Arduino IDE的使用方法有了一个简单的认识，在这一章中，我们将开始搭建我们的第一个电路，准备好需要的实验器材，让我们开始Arduino的学习之旅吧。
 实验材料# UNO 控制板一块，LED灯6个，220Ω电阻6个，面包板1块，面包板跳线若干。
-连接示意图# 硬件连接图# 硬件知识要点# LED的两个针脚一长一短，其中长的连接的是正极，而短的连接的是GND，其次，在LED与控制板之间，需要添加一个限流电阻，由于LED内阻较小，不添加限流电阻的话有可能会烧坏LED。
-程序编写# // 定义LED引脚范围常量（增强代码可读性和可维护性） const int LED_START_PIN = 2; // LED起始引脚 const int LED_END_PIN = 7; // LED结束引脚 // 板子启动/复位后仅运行一次的初始化函数 void setup() { // 初始化I/O口：将引脚2到7全部设置为输出模式 for (int i = 2; i &lt; 8; i&#43;&#43;) { pinMode(i, OUTPUT); // 每个pinMode调用单独一行，增加代码可读性 } } // 初始化完成后循环执行的主函数 void loop() { // 正向流水：从引脚2到引脚6，逐个点亮LED，亮1秒后熄灭 for (int i = LED_START_PIN; i &lt; 6; i&#43;&#43;) { digitalWrite(i, HIGH); // 点亮当前引脚的LED delay(1000); // 保持点亮状态1秒（1000毫秒） digitalWrite(i, LOW); // 熄灭当前引脚的LED } // 反向流水：从引脚7到引脚3，逐个点亮LED，亮1秒后熄灭 for (int i = LED_END_PIN; i &gt; 2; i--) { digitalWrite(i, HIGH); // 点亮当前引脚的LED delay(1000); // 保持点亮状态1秒（1000毫秒） digitalWrite(i, LOW); // 熄灭当前引脚的LED } }">
+连接示意图# 流水灯实验连接示意图
+硬件连接图#">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -32,19 +32,19 @@ https://github.com/alex-shpak/hugo-book
   <meta itemprop="description" content="Arduino 实践篇# 写于2026/02/12
 实验二 流水灯# 概述# 在上一章中我们进行了板载LED的实验，对于Arduino的语言与Arduino IDE的使用方法有了一个简单的认识，在这一章中，我们将开始搭建我们的第一个电路，准备好需要的实验器材，让我们开始Arduino的学习之旅吧。
 实验材料# UNO 控制板一块，LED灯6个，220Ω电阻6个，面包板1块，面包板跳线若干。
-连接示意图# 硬件连接图# 硬件知识要点# LED的两个针脚一长一短，其中长的连接的是正极，而短的连接的是GND，其次，在LED与控制板之间，需要添加一个限流电阻，由于LED内阻较小，不添加限流电阻的话有可能会烧坏LED。
-程序编写# // 定义LED引脚范围常量（增强代码可读性和可维护性） const int LED_START_PIN = 2; // LED起始引脚 const int LED_END_PIN = 7; // LED结束引脚 // 板子启动/复位后仅运行一次的初始化函数 void setup() { // 初始化I/O口：将引脚2到7全部设置为输出模式 for (int i = 2; i &lt; 8; i&#43;&#43;) { pinMode(i, OUTPUT); // 每个pinMode调用单独一行，增加代码可读性 } } // 初始化完成后循环执行的主函数 void loop() { // 正向流水：从引脚2到引脚6，逐个点亮LED，亮1秒后熄灭 for (int i = LED_START_PIN; i &lt; 6; i&#43;&#43;) { digitalWrite(i, HIGH); // 点亮当前引脚的LED delay(1000); // 保持点亮状态1秒（1000毫秒） digitalWrite(i, LOW); // 熄灭当前引脚的LED } // 反向流水：从引脚7到引脚3，逐个点亮LED，亮1秒后熄灭 for (int i = LED_END_PIN; i &gt; 2; i--) { digitalWrite(i, HIGH); // 点亮当前引脚的LED delay(1000); // 保持点亮状态1秒（1000毫秒） digitalWrite(i, LOW); // 熄灭当前引脚的LED } }">
-  <meta itemprop="wordCount" content="109">
+连接示意图# 流水灯实验连接示意图
+硬件连接图#">
+  <meta itemprop="wordCount" content="111">
 
 <title>流水灯 | Xavier的文档站</title>
 <link rel="icon" href="/favicon.png" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://Xavier-Zev.github.io/docs/example/Arduino%E6%95%99%E7%A8%8B/Arduino%E5%AE%9E%E8%B7%B5%E7%AF%87/%E6%B5%81%E6%B0%B4%E7%81%AF/">
-<link rel="stylesheet" href="/book.min.c13c511b7f1cabadff400eda6fca1d7f995582311b2fc0dbd79f56b33a0ca33e.css" integrity="sha256-wTxRG38cq63/QA7ab8odf5lVgjEbL8Db159WszoMoz4=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.abad93e41fae5bd8379f0086241e1dfd180c1f9952af0a3212417f6d15547f13.css" integrity="sha256-q62T5B&#43;uW9g3nwCGJB4d/RgMH5lSrwoyEkF/bRVUfxM=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/zh-cn.search.min.b75a556547158269b6b24a1223021cba9b4e963450dffd02fea57b2229e59ac8.js" integrity="sha256-t1pVZUcVgmm2skoSIwIcuptOljRQ3/0C/qV7Iinlmsg=" crossorigin="anonymous"></script>
+  <script defer src="/zh-cn.search.min.3e15ce6f8491ff8148bfbacc2734a964287c50906ad4cf1e083c6b219e2b7dea.js" integrity="sha256-PhXOb4SR/4FIv7rMJzSpZCh8UJBq1M8eCDxrIZ4rfeo=" crossorigin="anonymous"></script>
 
 
 
@@ -1650,9 +1650,47 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>
 <h3 id="连接示意图"><strong>连接示意图</strong><a class="anchor" href="#%e8%bf%9e%e6%8e%a5%e7%a4%ba%e6%84%8f%e5%9b%be">#</a></h3>
+<p>
+
+<img 
+  src="https://tuchuang-1317271371.cos.ap-shanghai.myqcloud.com/Arduino%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/20260215143341238.png?imageSlim" 
+  alt="" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<p><strong><center>流水灯实验连接示意图</center></strong></p>
 </li>
 <li>
 <h3 id="硬件连接图"><strong>硬件连接图</strong><a class="anchor" href="#%e7%a1%ac%e4%bb%b6%e8%bf%9e%e6%8e%a5%e5%9b%be">#</a></h3>
+<p>
+
+<img 
+  src="https://tuchuang-1317271371.cos.ap-shanghai.myqcloud.com/Arduino%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/20260215143345121.png?imageSlim" 
+  alt="" 
+  
+  style="
+    display: block; 
+    margin: 0 auto;        /* 居中 */
+    max-width: 80%;        /* 最大宽度 */
+    height: auto;          /* 保持宽高比 */
+    border-radius: 8px;    /* 圆角 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影 */
+    margin-top: 16px;      /* 上边距 */
+    margin-bottom: 16px;   /* 下边距 */
+    border: 1px solid #eee;/* 边框 */
+  "
+/></p>
+<p><strong><center>流水灯实验硬件连接图</center></strong></p>
 </li>
 <li>
 <h3 id="硬件知识要点"><strong>硬件知识要点</strong><a class="anchor" href="#%e7%a1%ac%e4%bb%b6%e7%9f%a5%e8%af%86%e8%a6%81%e7%82%b9">#</a></h3>
